@@ -25,7 +25,7 @@
             background: radial-gradient(125% 90% at 82% -12%, rgba(139, 92, 246, 0.32), transparent 58%), linear-gradient(158deg, #1e1b3a 0%, #241f47 60%, #2a2450 100%);
             border-radius: 12px;
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(167, 139, 250, 0.10);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
             transition: all 0.3s ease;
         }
@@ -39,7 +39,7 @@
             text-align: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.12);
         }
 
         .header h1 {
@@ -58,7 +58,7 @@
             padding: 15px;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(167, 139, 250, 0.10);
         }
 
         .status-item {
@@ -149,7 +149,7 @@
             overflow: hidden;
             max-height: 500px;
             overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(167, 139, 250, 0.10);
         }
 
         .results-table {
@@ -163,7 +163,7 @@
             padding: 10px 8px;
             text-align: left;
             font-weight: 600;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.12);
             position: sticky;
             top: 0;
             cursor: pointer;
@@ -173,7 +173,7 @@
         }
 
         .results-table th:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(167, 139, 250, 0.08);
         }
 
 
@@ -187,13 +187,13 @@
         }
 
         .results-container::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(167, 139, 250, 0.50);
             border-radius: 4px;
             transition: background 0.2s ease;
         }
 
         .results-container::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(167, 139, 250, 0.70);
         }
 
 
@@ -207,13 +207,13 @@
         }
 
         body::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(167, 139, 250, 0.50);
             border-radius: 4px;
             transition: background 0.2s ease;
         }
 
         body::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(167, 139, 250, 0.70);
         }
 
         .sort-btn {
@@ -232,12 +232,12 @@
 
         .results-table td {
             padding: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
             word-break: break-all;
         }
 
         .results-table tr:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(167, 139, 250, 0.08);
         }
 
         .status-success {
@@ -288,7 +288,7 @@
 
         .filter-select {
             padding: 6px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(167, 139, 250, 0.40);
             border-radius: 4px;
             background: rgba(0, 0, 0, 0.2);
             color: white;
@@ -310,17 +310,17 @@
         }
 
         .modal-content {
-            background-color: rgb(23, 22, 46);
+            background-color: #ffffff; color: #241f45;
             border-radius: 10px;
             width: 90%;
             max-width: 500px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.15);
         }
 
         .modal-header {
             padding: 20px;
-            border-bottom: 1px solid #3a4a5c;
+            border-bottom: 1px solid rgba(167, 139, 250, 0.30);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -376,6 +376,31 @@
         .export-option:hover {
             transform: translateY(-2px);
         }
+    
+/* --- Spectre: white data surfaces + lavender accents --- */
+.modal-content{background:#ffffff !important;color:#241f45 !important;border:1px solid #d8cef2 !important;}
+.modal-content .modal-close,.modal-content .close,.modal-close{color:#6b6785 !important;}
+.modal h3,.modal-header h3,.modal-content h3{color:#6d3bd6 !important;}
+.modal-body,.modal-body p,.modal-body label{color:#2a2547 !important;}
+.modal-header{border-bottom:1px solid #e4dcf7 !important;}
+.results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
+.results-table{background:#ffffff !important;color:#2a2547 !important;}
+.results-table th{background:#f1ecfb !important;color:#1e1b3a !important;border-bottom:1px solid #c9bcf0 !important;}
+.results-table th:hover{background:#e9e1fb !important;}
+.results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
+.results-table tr:hover{background:#f6f2fe !important;}
+.results-table .status-success,.results-table .success{color:#6d3bd6 !important;}
+.results-table .status-error,.results-table .error{color:#dc2626 !important;}
+.results-container::-webkit-scrollbar-thumb{background:rgba(167,139,250,0.55) !important;}
+/* differentiated action buttons: red-transparent Delete, violet Inject, lavender Edit */
+.delete-btn{background:rgba(239,68,68,0.12) !important;border:1px solid rgba(239,68,68,0.50) !important;color:#ef4444 !important;}
+.delete-btn:hover{background:rgba(239,68,68,0.22) !important;border-color:rgba(239,68,68,0.70) !important;}
+.inject-btn{background:rgba(139,92,246,0.18) !important;border:1px solid rgba(139,92,246,0.55) !important;color:#c4b5fd !important;}
+.inject-btn:hover{background:rgba(139,92,246,0.32) !important;color:#ffffff !important;}
+.modify-btn{background:rgba(167,139,250,0.08) !important;border:1px solid rgba(167,139,250,0.38) !important;color:#cbb6f5 !important;}
+.modify-btn:hover{background:rgba(167,139,250,0.18) !important;}
+.close-hook-btn{background:rgba(148,163,184,0.12) !important;border:1px solid rgba(148,163,184,0.40) !important;color:#cbd5e1 !important;}
+
     </style>
 </head>
 <body>

@@ -618,7 +618,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         .container {
             max-width: 100%;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(167, 139, 250, 0.15);
             border-radius: 15px;
             padding: 20px;
             backdrop-filter: blur(10px);
@@ -693,9 +693,9 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(167, 139, 250, 0.28);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(167, 139, 250, 0.40);
         }
 
         .btn:hover {
@@ -735,12 +735,12 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         .results-table td {
             padding: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.15);
             word-break: break-all;
         }
 
         .results-table tr:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(167, 139, 250, 0.08);
         }
 
         .status-success {
@@ -791,13 +791,38 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         .filter-select {
             padding: 6px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(167, 139, 250, 0.40);
             border-radius: 4px;
             background: rgba(0, 0, 0, 0.2);
             color: white;
             font-size: 11px;
         }
-    </style>
+    
+/* --- Spectre: white data surfaces + lavender accents --- */
+.modal-content{background:#ffffff !important;color:#241f45 !important;border:1px solid #d8cef2 !important;}
+.modal-content .modal-close,.modal-content .close,.modal-close{color:#6b6785 !important;}
+.modal h3,.modal-header h3,.modal-content h3{color:#6d3bd6 !important;}
+.modal-body,.modal-body p,.modal-body label{color:#2a2547 !important;}
+.modal-header{border-bottom:1px solid #e4dcf7 !important;}
+.results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
+.results-table{background:#ffffff !important;color:#2a2547 !important;}
+.results-table th{background:#f1ecfb !important;color:#1e1b3a !important;border-bottom:1px solid #c9bcf0 !important;}
+.results-table th:hover{background:#e9e1fb !important;}
+.results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
+.results-table tr:hover{background:#f6f2fe !important;}
+.results-table .status-success,.results-table .success{color:#6d3bd6 !important;}
+.results-table .status-error,.results-table .error{color:#dc2626 !important;}
+.results-container::-webkit-scrollbar-thumb{background:rgba(167,139,250,0.55) !important;}
+/* differentiated action buttons: red-transparent Delete, violet Inject, lavender Edit */
+.delete-btn{background:rgba(239,68,68,0.12) !important;border:1px solid rgba(239,68,68,0.50) !important;color:#ef4444 !important;}
+.delete-btn:hover{background:rgba(239,68,68,0.22) !important;border-color:rgba(239,68,68,0.70) !important;}
+.inject-btn{background:rgba(139,92,246,0.18) !important;border:1px solid rgba(139,92,246,0.55) !important;color:#c4b5fd !important;}
+.inject-btn:hover{background:rgba(139,92,246,0.32) !important;color:#ffffff !important;}
+.modify-btn{background:rgba(167,139,250,0.08) !important;border:1px solid rgba(167,139,250,0.38) !important;color:#cbb6f5 !important;}
+.modify-btn:hover{background:rgba(167,139,250,0.18) !important;}
+.close-hook-btn{background:rgba(148,163,184,0.12) !important;border:1px solid rgba(148,163,184,0.40) !important;color:#cbd5e1 !important;}
+
+</style>
 </head>
 <body>
     <div class="container">

@@ -426,7 +426,7 @@ class DisplayManager {
             modalContent.style.backgroundColor = 'rgb(23, 22, 46)';
             modalContent.style.margin = '15% auto';
             modalContent.style.padding = '20px';
-            modalContent.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+            modalContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
             modalContent.style.width = '80%';
             modalContent.style.maxWidth = '600px';
             modalContent.style.borderRadius = '10px';
@@ -462,7 +462,7 @@ class DisplayManager {
             closeBtn.style.borderRadius = '50%';
 
             closeBtn.onmouseover = () => {
-                closeBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                closeBtn.style.backgroundColor = 'rgba(167, 139, 250, 0.15)';
                 closeBtn.style.color = '#fff';
             };
 
@@ -499,7 +499,7 @@ class DisplayManager {
         list.style.maxHeight = '400px';
         list.style.overflowY = 'auto';
         list.style.padding = '10px';
-        list.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+        list.style.border = '1px solid rgba(167, 139, 250, 0.15)';
         list.style.borderRadius = '8px';
         list.style.marginTop = '10px';
         list.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
@@ -524,7 +524,7 @@ class DisplayManager {
 
             itemDiv.style.padding = '8px 10px';
             itemDiv.style.margin = '3px 0';
-            itemDiv.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
+            itemDiv.style.borderBottom = '1px solid rgba(167, 139, 250, 0.08)';
             itemDiv.style.wordBreak = 'break-all';
             itemDiv.style.transition = 'all 0.3s';
             itemDiv.style.borderRadius = '4px';
@@ -534,7 +534,7 @@ class DisplayManager {
             let tooltip = null;
 
             itemDiv.onmouseover = async (e) => {
-                itemDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                itemDiv.style.backgroundColor = 'rgba(167, 139, 250, 0.15)';
                 itemDiv.style.transform = 'translateX(3px)';
 
 
@@ -549,7 +549,7 @@ class DisplayManager {
                     tooltip.style.zIndex = '10000';
                     tooltip.style.maxWidth = '300px';
                     tooltip.style.wordWrap = 'break-word';
-                    tooltip.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                    tooltip.style.border = '1px solid rgba(167, 139, 250, 0.28)';
                     tooltip.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
                     tooltip.style.pointerEvents = 'none';
                     document.body.appendChild(tooltip);
@@ -783,7 +783,7 @@ class DisplayManager {
             modalContent.style.backgroundColor = 'rgb(23, 22, 46)';
             modalContent.style.margin = '5% auto';
             modalContent.style.padding = '20px';
-            modalContent.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+            modalContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
             modalContent.style.width = '90%';
             modalContent.style.maxWidth = '800px';
             modalContent.style.borderRadius = '10px';
@@ -821,7 +821,7 @@ class DisplayManager {
             closeBtn.style.borderRadius = '50%';
 
             closeBtn.onmouseover = () => {
-                closeBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                closeBtn.style.backgroundColor = 'rgba(167, 139, 250, 0.15)';
                 closeBtn.style.color = '#fff';
             };
 
@@ -963,7 +963,7 @@ class DisplayManager {
                 dataContent.style.fontSize = '12px';
                 dataContent.style.whiteSpace = 'pre-wrap';
                 dataContent.style.wordBreak = 'break-all';
-                dataContent.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                dataContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
                 dataContent.style.transition = 'all 0.3s';
 
                 dataToggle.onmouseover = () => {
@@ -1431,7 +1431,7 @@ class DisplayManager {
             word-wrap: break-word;
             z-index: 10000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(167, 139, 250, 0.28);
         `;
 
         const formatDate = (dateStr) => {

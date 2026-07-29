@@ -778,7 +778,7 @@ class ILoveYouTranslucent7 {
                 configItem.className = 'custom-regex-item';
                 configItem.style.cssText = `
                     background: rgba(40, 40, 40, 0.5);
-                    border: 1px solid rgba(90, 90, 90, 0.3);
+                    border: 1px solid rgba(167, 139, 250, 0.30);
                     border-radius: 8px;
                     padding: 12px;
                     margin-bottom: 10px;
@@ -882,7 +882,7 @@ class ILoveYouTranslucent7 {
                 configItem.addEventListener('mouseenter', () => {
                     configItem.style.transform = 'translateY(-2px)';
                     configItem.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
-                    configItem.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    configItem.style.borderColor = 'rgba(167, 139, 250, 0.28)';
                 });
 
                 configItem.addEventListener('mouseleave', () => {

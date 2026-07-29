@@ -1132,7 +1132,7 @@ function addResultToTable(result) {
             pre.style.background = 'rgba(0, 0, 0, 0.3)';
             pre.style.padding = '10px';
             pre.style.borderRadius = '8px';
-            pre.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+            pre.style.border = '1px solid rgba(167, 139, 250, 0.15)';
             pre.textContent = rawResponse;
             modalBody.appendChild(pre);
 

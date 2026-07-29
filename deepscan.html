@@ -61,7 +61,7 @@
         .container {
             max-width: 100%;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(167, 139, 250, 0.10);
             border-radius: 15px;
             padding: 20px;
             backdrop-filter: blur(10px);
@@ -94,7 +94,7 @@
             display: inline-block;
             margin-right: 15px;
             padding: 2px 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(167, 139, 250, 0.15);
             border-radius: 4px;
         }
 
@@ -110,7 +110,7 @@
         .status-item {
             text-align: center;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(167, 139, 250, 0.12);
             border-radius: 8px;
         }
         .status-number { font-size: 1.2em; font-weight: bold; margin-bottom: 5px; }
@@ -178,20 +178,20 @@
             transition: all 0.3s ease;
         }
         .btn-primary { background: #8b5cf6; color: #fff; }
-        .btn-secondary { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+        .btn-secondary { background: rgba(167, 139, 250, 0.28); color: #fff; border: 1px solid rgba(167, 139, 250, 0.40); }
         .btn-danger { background: #ff4757; color: #fff; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
         .progress-section { margin-bottom: 20px; padding: 15px; background: rgba(0, 0, 0, 0.2); border-radius: 10px; }
-        .progress-bar-container { width: 100%; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .progress-bar-container { width: 100%; height: 20px; background: rgba(167, 139, 250, 0.15); border-radius: 10px; overflow: hidden; margin-top: 10px; }
         .progress-bar { height: 100%; background: #8b5cf6; width: 0%; transition: width 0.3s ease; border-radius: 10px; }
 
         .results-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 20px; }
         .result-category { background: rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 15px; max-height: 300px; overflow-y: auto; }
         .result-category h3 { margin-bottom: 10px; color: #8b5cf6; font-size: 1.1em; border-bottom: 1px solid rgba(48, 90, 160, 0.35); padding-bottom: 5px; }
         .result-list { list-style: none; }
-        .result-item { padding: 5px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 12px; word-break: break-all; }
+        .result-item { padding: 5px 0; border-bottom: 1px solid rgba(167, 139, 250, 0.15); font-size: 12px; word-break: break-all; }
         .result-item:last-child { border-bottom: none; }
         .result-item.new { background: rgba(139, 92, 246, 0.15); padding: 5px; border-radius: 4px; animation: highlight 2s ease-out; }
         @keyframes highlight { 0% { background: rgba(139, 92, 246,0.35); } 100% { background: rgba(139, 92, 246,0.15); } }
@@ -220,9 +220,34 @@
 
 
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: rgba(167, 139, 250, 0.15); border-radius: 4px; }
         ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 4px; transition: background 0.2s ease; }
         ::-webkit-scrollbar-thumb:hover { background: #a78bfa; }
+    
+/* --- Spectre: white data surfaces + lavender accents --- */
+.modal-content{background:#ffffff !important;color:#241f45 !important;border:1px solid #d8cef2 !important;}
+.modal-content .modal-close,.modal-content .close,.modal-close{color:#6b6785 !important;}
+.modal h3,.modal-header h3,.modal-content h3{color:#6d3bd6 !important;}
+.modal-body,.modal-body p,.modal-body label{color:#2a2547 !important;}
+.modal-header{border-bottom:1px solid #e4dcf7 !important;}
+.results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
+.results-table{background:#ffffff !important;color:#2a2547 !important;}
+.results-table th{background:#f1ecfb !important;color:#1e1b3a !important;border-bottom:1px solid #c9bcf0 !important;}
+.results-table th:hover{background:#e9e1fb !important;}
+.results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
+.results-table tr:hover{background:#f6f2fe !important;}
+.results-table .status-success,.results-table .success{color:#6d3bd6 !important;}
+.results-table .status-error,.results-table .error{color:#dc2626 !important;}
+.results-container::-webkit-scrollbar-thumb{background:rgba(167,139,250,0.55) !important;}
+/* differentiated action buttons: red-transparent Delete, violet Inject, lavender Edit */
+.delete-btn{background:rgba(239,68,68,0.12) !important;border:1px solid rgba(239,68,68,0.50) !important;color:#ef4444 !important;}
+.delete-btn:hover{background:rgba(239,68,68,0.22) !important;border-color:rgba(239,68,68,0.70) !important;}
+.inject-btn{background:rgba(139,92,246,0.18) !important;border:1px solid rgba(139,92,246,0.55) !important;color:#c4b5fd !important;}
+.inject-btn:hover{background:rgba(139,92,246,0.32) !important;color:#ffffff !important;}
+.modify-btn{background:rgba(167,139,250,0.08) !important;border:1px solid rgba(167,139,250,0.38) !important;color:#cbb6f5 !important;}
+.modify-btn:hover{background:rgba(167,139,250,0.18) !important;}
+.close-hook-btn{background:rgba(148,163,184,0.12) !important;border:1px solid rgba(148,163,184,0.40) !important;color:#cbd5e1 !important;}
+
     </style>
 </head>
 <body>
@@ -515,7 +540,7 @@
         }
         .modal-header {
             padding: 20px 25px 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.32);
             display: flex; justify-content: space-between; align-items: center;
         }
         .modal-header h3 { margin: 0; color: #fff; font-size: 1.3em; }
@@ -530,7 +555,7 @@
         .export-option {
             display: flex; align-items: center; gap: 15px;
             padding: 15px 20px; text-align: left; border-radius: 10px; transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(167, 139, 250, 0.18); border: 1px solid rgba(167, 139, 250, 0.32);
         }
         .export-option:hover { background: rgba(255, 255, 255, 0.22); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
         .export-option .icon { font-size: 24px; min-width: 30px; }
