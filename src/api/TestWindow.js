@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(130% 95% at 80% -10%, rgba(124, 58, 237, 0.11), transparent 58%), linear-gradient(158deg, #0a0719 0%, #0d0a22 55%, #110d2e 100%);
+            background: radial-gradient(130% 95% at 80% -10%, rgba(124, 58, 237, 0.15), transparent 60%), linear-gradient(158deg, #120e2e 0%, #17123a 55%, #1c1745 100%);
             color: #fff;
             min-height: 100vh;
             padding: 20px;
@@ -806,7 +806,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 .modal-header{border-bottom:1px solid #e4dcf7 !important;}
 .results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
 .results-table{background:#ffffff !important;color:#2a2547 !important;}
-.results-table th{background:#f1ecfb !important;color:#0a0719 !important;border-bottom:1px solid #c9bcf0 !important;}
+.results-table th{background:#f1ecfb !important;color:#120e2e !important;border-bottom:1px solid #c9bcf0 !important;}
 .results-table th:hover{background:#e9e1fb !important;}
 .results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
 .results-table tr:hover{background:#f6f2fe !important;}
@@ -956,6 +956,21 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 .nav-tab::before{background:linear-gradient(90deg,#6d4cb8,#33176b) !important;}
 /* count badge deeper so it doesn't glare */
 .count-badge{background:#3d1d7d !important;color:#ded6f2 !important;}
+
+
+/* ===== fix: hover lift was being clipped by overflow:hidden ===== */
+/* keep overflow hidden ONLY while collapsing, so the lift isn't cropped */
+.scan-buttons-container{overflow:visible !important;padding-top:4px;}
+.scan-buttons-container.collapsed{overflow:hidden !important;padding-top:0;}
+/* room for the toggle button's lift */
+.toggle-buttons-container{margin:0 0 10px 0 !important;padding:4px 0 2px !important;overflow:visible !important;}
+.toggle-button{line-height:1.2 !important;padding:7px 16px !important;}
+/* the ripple halo lives behind the button; don't let it clip the border */
+.action-button{overflow:visible !important;}
+.action-button::after{z-index:-1;}
+/* gentler lift so nothing collides with neighbours */
+.action-button:hover,.toggle-button:hover{transform:translateY(-2px) !important;}
+.action-button:active,.toggle-button:active{transform:translateY(0) !important;}
 
 </style>
 </head>
