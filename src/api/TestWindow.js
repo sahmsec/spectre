@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         .header h1 {
             font-size: 1.8em;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #8b5cf6, #4f7df9);
+            background: #8b5cf6;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -667,7 +667,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         .success { color: #8b5cf6; }
         .error { color: #ff4757; }
-        .total { color: #4f7df9; }
+        .total { color: #8b5cf6; }
         .progress { color: #ffa502; }
 
         .controls {
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #8b5cf6, #4f7df9);
+            background: #8b5cf6;
             color: white;
         }
 

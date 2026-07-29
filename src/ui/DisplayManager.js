@@ -869,7 +869,7 @@ class DisplayManager {
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <span>Success:</span>
-                <span style="color: #4caf50; font-weight: 600;">${successCount}</span>
+                <span style="color: #8b5cf6; font-weight: 600;">${successCount}</span>
             </div>
             <div style="display: flex; justify-content: space-between;">
                 <span>Failed:</span>
@@ -898,12 +898,12 @@ class DisplayManager {
             const resultItem = document.createElement('div');
             resultItem.style.marginBottom = '15px';
             resultItem.style.padding = '12px';
-            resultItem.style.border = '1px solid ' + (result.success ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)');
+            resultItem.style.border = '1px solid ' + (result.success ? 'rgba(139, 92, 246, 0.3)' : 'rgba(244, 67, 54, 0.3)');
             resultItem.style.borderRadius = '8px';
-            resultItem.style.backgroundColor = result.success ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)';
+            resultItem.style.backgroundColor = result.success ? 'rgba(139, 92, 246, 0.1)' : 'rgba(244, 67, 54, 0.1)';
             resultItem.style.transition = 'all 0.3s';
 
-            const statusColor = result.success ? '#4caf50' : '#f44336';
+            const statusColor = result.success ? '#8b5cf6' : '#f44336';
             const statusText = result.success ? 'Success' : 'Failed';
             const statusCode = result.status || 'N/A';
 
@@ -927,13 +927,13 @@ class DisplayManager {
             resultItem.onmouseover = () => {
                 resultItem.style.transform = 'translateY(-2px)';
                 resultItem.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-                resultItem.style.borderColor = result.success ? 'rgba(76, 175, 80, 0.5)' : 'rgba(244, 67, 54, 0.5)';
+                resultItem.style.borderColor = result.success ? 'rgba(139, 92, 246, 0.5)' : 'rgba(244, 67, 54, 0.5)';
             };
 
             resultItem.onmouseout = () => {
                 resultItem.style.transform = 'translateY(0)';
                 resultItem.style.boxShadow = 'none';
-                resultItem.style.borderColor = result.success ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)';
+                resultItem.style.borderColor = result.success ? 'rgba(139, 92, 246, 0.3)' : 'rgba(244, 67, 54, 0.3)';
             };
 
 
@@ -1036,7 +1036,7 @@ class DisplayManager {
 
         switch (type) {
             case 'success':
-                notification.style.backgroundColor = 'rgba(76, 175, 80, 0.9)';
+                notification.style.backgroundColor = 'rgba(139, 92, 246, 0.9)';
                 notification.style.color = 'white';
                 break;
             case 'error':
@@ -1667,7 +1667,7 @@ class DisplayManager {
         const notification = document.createElement('div');
         notification.className = 'phantom-notification';
 
-        const bgColor = type === 'error' ? '#ff4757' : '#2ed573';
+        const bgColor = type === 'error' ? '#ff4757' : '#a78bfa';
 
         notification.style.cssText = `
             position: fixed;

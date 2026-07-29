@@ -279,7 +279,7 @@ class JSInjector {
             const active = this.activeScripts.has(hookId);
 
             buttonsDiv.innerHTML = `
-                ${script.isPreset ? '<span style="color: #4CAF50; font-size: 12px; padding: 4px 8px; background: rgba(76, 175, 80, 0.1); border-radius: 3px; margin-right: 5px;">Preset</span>' : ''}
+                ${script.isPreset ? '<span style="color: #8b5cf6; font-size: 12px; padding: 4px 8px; background: rgba(139, 92, 246, 0.1); border-radius: 3px; margin-right: 5px;">Preset</span>' : ''}
                 <button class="${active ? 'close-hook-btn' : 'inject-btn'}" data-index="${index}" data-action="${active ? 'uninstall' : 'inject'}" onclick="event.stopPropagation()">${active ? 'Close' : 'Inject'}</button>
                 <button class="modify-btn" data-index="${index}" data-action="modify" onclick="event.stopPropagation()">Edit</button>
                 <button class="delete-btn" data-index="${index}" data-action="delete" onclick="event.stopPropagation()">Delete</button>

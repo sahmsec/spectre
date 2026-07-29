@@ -38,7 +38,7 @@ class WebpackResultRenderer {
         section.id = this.containerId;
         section.className = 'result-section webpack-section';
         section.style.cssText = `
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.1));
             border: 1px solid rgba(139, 92, 246, 0.3);
             border-radius: 8px;
             padding: 12px;

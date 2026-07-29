@@ -4626,7 +4626,7 @@ function showContextMenuNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = 'context-menu-notification';
 
-    const bgColor = type === 'error' ? '#ff4757' : '#2ed573';
+    const bgColor = type === 'error' ? '#ff4757' : '#a78bfa';
 
     notification.style.cssText = `
         position: fixed;

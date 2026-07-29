@@ -408,7 +408,7 @@ class ILoveYouTranslucent7 {
                 notification.style.color = '#fff';
                 break;
             default:
-                notification.style.backgroundColor = '#3498db';
+                notification.style.backgroundColor = '#8b5cf6';
                 notification.style.color = '#fff';
         }
 
@@ -842,7 +842,7 @@ class ILoveYouTranslucent7 {
                             <button class="save-custom-regex-btn" data-key="${key}" style="
                                 background: rgba(52, 152, 219, 0.3);
                                 border: 1px solid rgba(52, 152, 219, 0.5);
-                                color: #3498db;
+                                color: #8b5cf6;
                                 padding: 4px 8px;
                                 border-radius: 4px;
                                 font-size: 12px;

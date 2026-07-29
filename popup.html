@@ -72,7 +72,7 @@
             height: 200px;
             left: -30%;
             top: -30%;
-            background: #8b5cf6;
+            background: transparent;
             filter: blur(60px);
             opacity: 0.4;
             z-index: 0;
@@ -180,7 +180,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
             transition: all 0.3s;
         }
 
@@ -333,19 +333,19 @@
 
 
         .scan-button {
-            background: #3b82f6;
-            border-color: rgba(59, 130, 246, 0.5);
+            background: #8b5cf6;
+            border-color: rgba(139, 92, 246, 0.5);
         }
         .scan-button:hover {
-            background: #2563eb;
+            background: #7c3aed;
         }
         .scan-button.scanning {
             animation: bluepulse 2s infinite;
         }
         @keyframes bluepulse {
-            0% { box-shadow: 0 0 5px rgba(59,130,246,0.25); }
-            50% { box-shadow: 0 0 18px rgba(59,130,246,0.45); }
-            100% { box-shadow: 0 0 5px rgba(59,130,246,0.25); }
+            0% { box-shadow: 0 0 5px rgba(139, 92, 246,0.25); }
+            50% { box-shadow: 0 0 18px rgba(139, 92, 246,0.45); }
+            100% { box-shadow: 0 0 5px rgba(139, 92, 246,0.25); }
         }
 
 
@@ -387,7 +387,7 @@
         }
 
         .config-option input[type="checkbox"] {
-            accent-color: #3b82f6;
+            accent-color: #8b5cf6;
         }
 
 
@@ -436,7 +436,7 @@
         }
 
         .progress-bar {
-            background: linear-gradient(45deg, #8b5cf6, #4f7df9);
+            background: #8b5cf6;
             height: 100%;
             width: 0%;
             transition: width 0.3s ease;
@@ -515,7 +515,7 @@
         }
 
         .count-badge {
-            background: linear-gradient(45deg, #60a5fa, #3b82f6);
+            background: #a78bfa;
             color: #0b1220;
             padding: 2px 8px;
             border-radius: 12px;
@@ -554,27 +554,27 @@
 
         .item:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: #3b82f6;
+            border-color: #8b5cf6;
             color: #fff;
         }
 
         .item.copied {
-            background: rgba(59, 130, 246, 0.16);
-            border-color: #3b82f6;
+            background: rgba(139, 92, 246, 0.16);
+            border-color: #8b5cf6;
             color: #fff;
         }
 
         .item-more {
             text-align: center;
-            color: #60a5fa;
+            color: #a78bfa;
             font-weight: 600;
-            background: rgba(59, 130, 246, 0.08);
+            background: rgba(139, 92, 246, 0.08);
             border-style: dashed;
         }
 
         .item-more:hover {
-            background: rgba(59, 130, 246, 0.16);
-            color: #93c5fd;
+            background: rgba(139, 92, 246, 0.16);
+            color: #c4b5fd;
         }
 
 
@@ -722,11 +722,11 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            background: linear-gradient(45deg, #8b5cf6, #4f7df9);
+            background: #8b5cf6;
         }
 
         .export-option.export-csv {
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            background: #27ae60;
         }
 
         .export-option small {
@@ -1084,7 +1084,7 @@
 
 
         .ray, .line { display: none !important; }
-        .results-container .category:nth-of-type(6n+1) .category-title { color: #93c5fd; }
+        .results-container .category:nth-of-type(6n+1) .category-title { color: #c4b5fd; }
         .results-container .category:nth-of-type(6n+2) .category-title { color: #a5b4fc; }
         .results-container .category:nth-of-type(6n+3) .category-title { color: #6ee7b7; }
         .results-container .category:nth-of-type(6n+4) .category-title { color: #fcd34d; }
@@ -1201,11 +1201,11 @@
         }
 
         .close-hook-btn {
-            background: linear-gradient(180deg, #16a34a, #15803d);
-            border-color: #22c55e;
+            background: linear-gradient(180deg, #7c3aed, #15803d);
+            border-color: #8b5cf6;
         }
         .close-hook-btn:hover {
-            background: linear-gradient(180deg, #22c55e, #16a34a);
+            background: linear-gradient(180deg, #8b5cf6, #7c3aed);
         }
 
         ::-webkit-scrollbar {
@@ -1217,13 +1217,13 @@
             border-radius: 8px;
         }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #3b82f6, #6366f1);
+            background: linear-gradient(180deg, #8b5cf6, #8b5cf6);
             border-radius: 8px;
             border: 2px solid transparent;
             background-clip: padding-box;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #60a5fa, #818cf8);
+            background: linear-gradient(180deg, #a78bfa, #818cf8);
             background-clip: padding-box;
         }
 
@@ -1236,7 +1236,7 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         .nav-tab.active {
-            background: linear-gradient(180deg, rgba(59, 130, 246, 0.28), rgba(59, 130, 246, 0.12));
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.28), rgba(139, 92, 246, 0.12));
             border-color: rgba(96, 165, 250, 0.45);
         }
 
@@ -1251,7 +1251,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(180deg, #3b82f6, #6366f1);
+            background: linear-gradient(180deg, #8b5cf6, #8b5cf6);
             opacity: 0.65;
         }
         .category-header {
@@ -1263,7 +1263,7 @@
         }
 
         .count-badge {
-            box-shadow: 0 0 8px rgba(59, 130, 246, 0.35);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.35);
             min-width: 18px;
             text-align: center;
             display: inline-block;
@@ -1273,15 +1273,14 @@
             line-height: 1.45;
         }
         .item:hover {
-            box-shadow: inset 2px 0 0 #3b82f6;
+            box-shadow: inset 2px 0 0 #8b5cf6;
         }
 
         .config-title {
-            background: linear-gradient(90deg, #93c5fd, #c4b5fd);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #ECE9F5;
             font-weight: 700;
+            border-left: 3px solid #8b5cf6;
+            padding-left: 10px;
         }
 
         .results-container {
