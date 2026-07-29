@@ -213,14 +213,14 @@ class ApiTester {
 
             modal.style.display = 'block';
             resultsDiv.innerHTML = `
-                <div style="text-align: center; color: #00d4aa; margin-bottom: 20px;">
+                <div style="text-align: center; color: #8b5cf6; margin-bottom: 20px;">
                     <h3> Test window opened</h3>
                     <p>Started in a new window: ${this.getCategoryTitle(categoryKey)} batch test</p>
                     <p>Items: ${items.length} | Method: ${method}</p>
                     <p>Concurrency: ${concurrency} | Timeout: ${timeout/1000}s</p>
                     <br>
                     <button onclick="document.getElementById('requestResultModal').style.display='none'"
-                            style="padding: 10px 20px; background: #00d4aa; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            style="padding: 10px 20px; background: #8b5cf6; color: white; border: none; border-radius: 5px; cursor: pointer;">
                         Dismiss
                     </button>
                 </div>
@@ -272,7 +272,7 @@ class ApiTester {
 
 
                         resultsDiv.innerHTML = `
-                            <div style="text-align: center; color: #00d4aa; margin-bottom: 10px;">
+                            <div style="text-align: center; color: #8b5cf6; margin-bottom: 10px;">
                                 Test progress: ${completedCount}/${items.length} | Success: ${successCount} | Failed: ${failCount}
                                 <br>current concurrency: ${activeRequests}/${concurrency}
                             </div>
@@ -302,7 +302,7 @@ class ApiTester {
 
 
                         resultsDiv.innerHTML = `
-                            <div style="text-align: center; color: #00d4aa; margin-bottom: 10px;">
+                            <div style="text-align: center; color: #8b5cf6; margin-bottom: 10px;">
                                 Test progress: ${completedCount}/${items.length} | Success: ${successCount} | Failed: ${failCount}
                                 <br>current concurrency: ${activeRequests}/${concurrency}
                             </div>
@@ -329,7 +329,7 @@ class ApiTester {
         modalTitle.textContent = 'Batch Test Results';
 
         resultsDiv.innerHTML = `
-            <div style="text-align: center; color: #00d4aa; margin-bottom: 10px;">
+            <div style="text-align: center; color: #8b5cf6; margin-bottom: 10px;">
                 Test complete: ${successCount} succeeded / ${failCount} failed (${items.length} total)
                 <br>category: ${this.getCategoryTitle(categoryKey)} | Method: ${method}
             </div>
@@ -649,20 +649,20 @@ class ApiTester {
         let html = `
             <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
                 <thead>
-                    <tr style="background: rgba(0, 212, 170, 0.1);">
-                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #00d4aa;">Path</th>
-                        <th style="padding: 8px; text-align: center; border-bottom: 1px solid #00d4aa;">Status Code</th>
-                        <th style="padding: 8px; text-align: center; border-bottom: 1px solid #00d4aa;">Size</th>
-                        <th style="padding: 8px; text-align: center; border-bottom: 1px solid #00d4aa;">Time</th>
+                    <tr style="background: rgba(139, 92, 246, 0.1);">
+                        <th style="padding: 8px; text-align: left; border-bottom: 1px solid #8b5cf6;">Path</th>
+                        <th style="padding: 8px; text-align: center; border-bottom: 1px solid #8b5cf6;">Status Code</th>
+                        <th style="padding: 8px; text-align: center; border-bottom: 1px solid #8b5cf6;">Size</th>
+                        <th style="padding: 8px; text-align: center; border-bottom: 1px solid #8b5cf6;">Time</th>
                     </tr>
                 </thead>
                 <tbody>
         `;
 
         results.forEach(result => {
-            const statusColor = result.success ? '#00d4aa' : '#ff4757';
+            const statusColor = result.success ? '#8b5cf6' : '#ff4757';
             html += `
-                <tr style="border-bottom: 1px solid rgba(0, 212, 170, 0.2);">
+                <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.2);">
                     <td style="padding: 8px; word-break: break-all;">${result.url}</td>
                     <td style="padding: 8px; text-align: center; color: ${statusColor};">${result.status}</td>
                     <td style="padding: 8px; text-align: center;">${result.size}</td>

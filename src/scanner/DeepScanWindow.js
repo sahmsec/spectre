@@ -280,7 +280,7 @@ class DeepScanWindow {
             if (deepScanBtnText) {
                 deepScanBtnText.textContent = ' Deep scan complete';
             }
-            deepScanBtn.style.background = 'rgba(0, 212, 170, 0.3)';
+            deepScanBtn.style.background = 'rgba(139, 92, 246, 0.3)';
 
             setTimeout(() => {
                 if (deepScanBtnText) {

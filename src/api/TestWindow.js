@@ -629,13 +629,13 @@ document.addEventListener('DOMContentLoaded', initializePage);
             text-align: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid rgba(0, 212, 170, 0.3);
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
         }
 
         .header h1 {
             font-size: 1.8em;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #00d4aa, #00a8ff);
+            background: linear-gradient(45deg, #8b5cf6, #4f7df9);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -665,9 +665,9 @@ document.addEventListener('DOMContentLoaded', initializePage);
             opacity: 0.8;
         }
 
-        .success { color: #00d4aa; }
+        .success { color: #8b5cf6; }
         .error { color: #ff4757; }
-        .total { color: #00a8ff; }
+        .total { color: #4f7df9; }
         .progress { color: #ffa502; }
 
         .controls {
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #00d4aa, #00a8ff);
+            background: linear-gradient(45deg, #8b5cf6, #4f7df9);
             color: white;
         }
 
@@ -724,11 +724,11 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .results-table th {
-            background: rgba(0, 212, 170, 0.2);
+            background: rgba(139, 92, 246, 0.2);
             padding: 10px 8px;
             text-align: left;
             font-weight: 600;
-            border-bottom: 2px solid rgba(0, 212, 170, 0.3);
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
             position: sticky;
             top: 0;
         }
@@ -744,7 +744,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .status-success {
-            color: #00d4aa;
+            color: #8b5cf6;
             font-weight: bold;
         }
 
@@ -770,9 +770,9 @@ document.addEventListener('DOMContentLoaded', initializePage);
             display: inline-block;
             width: 30px;
             height: 30px;
-            border: 3px solid rgba(0, 212, 170, 0.3);
+            border: 3px solid rgba(139, 92, 246, 0.3);
             border-radius: 50%;
-            border-top-color: #00d4aa;
+            border-top-color: #8b5cf6;
             animation: spin 1s ease-in-out infinite;
             margin-bottom: 15px;
         }

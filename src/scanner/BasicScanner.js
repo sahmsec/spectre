@@ -128,7 +128,7 @@ class BasicScanner {
         const scanBtn = document.getElementById('scanBtn');
         const originalText = scanBtn.textContent;
         scanBtn.textContent = ' Scan complete';
-        scanBtn.style.background = 'rgba(0, 212, 170, 0.3)';
+        scanBtn.style.background = 'rgba(139, 92, 246, 0.3)';
 
         setTimeout(() => {
             scanBtn.textContent = originalText;

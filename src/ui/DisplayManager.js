@@ -195,7 +195,7 @@ class DisplayManager {
 
         if (totalCount === 0) {
             resultsDiv.innerHTML = `
-                <div style="padding: 20px; text-align: center; color: #00d4aa;">
+                <div style="padding: 20px; text-align: center; color: #8b5cf6;">
                     <h3>Scan complete</h3>
                     <p>No extractable information found on the current page</p>
                     <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">
@@ -217,7 +217,7 @@ class DisplayManager {
 
 
         const realtimeIndicator = this.srcMiner.deepScanRunning ?
-            '<span style="color: #00d4aa; animation: pulse 1s infinite;">●</span> Live updating' : '';
+            '<span style="color: #8b5cf6; animation: pulse 1s infinite;">●</span> Live updating' : '';
 
         document.getElementById('stats').innerHTML = `
             <div>Found <strong>${totalCount}</strong> items ${realtimeIndicator}</div>
@@ -423,7 +423,7 @@ class DisplayManager {
             modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
 
             const modalContent = document.createElement('div');
-            modalContent.style.backgroundColor = 'rgb(30, 30, 30)';
+            modalContent.style.backgroundColor = 'rgb(23, 22, 46)';
             modalContent.style.margin = '15% auto';
             modalContent.style.padding = '20px';
             modalContent.style.border = '1px solid rgba(255, 255, 255, 0.1)';
@@ -441,7 +441,7 @@ class DisplayManager {
 
             const modalTitle = document.createElement('h3');
             modalTitle.style.margin = '0';
-            modalTitle.style.color = '#00d4aa';
+            modalTitle.style.color = '#8b5cf6';
             modalTitle.style.fontSize = '18px';
             modalTitle.style.fontWeight = '600';
 
@@ -559,7 +559,7 @@ class DisplayManager {
                 try {
                     const locationInfo = await this.getItemLocationInfo(item);
                     tooltip.innerHTML = `
-                        <div style="font-weight: bold; color: #00d4aa; margin-bottom: 4px;">Source info</div>
+                        <div style="font-weight: bold; color: #8b5cf6; margin-bottom: 4px;">Source info</div>
                         <div><strong>Page:</strong> ${locationInfo.pageTitle}</div>
                         <div><strong>URL:</strong> ${locationInfo.sourceUrl}</div>
                         <div><strong>Time:</strong> ${new Date(locationInfo.extractedAt).toLocaleString('en-US')}</div>
@@ -780,7 +780,7 @@ class DisplayManager {
             modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
 
             const modalContent = document.createElement('div');
-            modalContent.style.backgroundColor = 'rgb(30, 30, 30)';
+            modalContent.style.backgroundColor = 'rgb(23, 22, 46)';
             modalContent.style.margin = '5% auto';
             modalContent.style.padding = '20px';
             modalContent.style.border = '1px solid rgba(255, 255, 255, 0.1)';
@@ -801,7 +801,7 @@ class DisplayManager {
             const modalTitle = document.createElement('h3');
             modalTitle.textContent = 'API Test Results';
             modalTitle.style.margin = '0';
-            modalTitle.style.color = '#00d4aa';
+            modalTitle.style.color = '#8b5cf6';
             modalTitle.style.fontSize = '18px';
             modalTitle.style.fontWeight = '600';
 
@@ -853,16 +853,16 @@ class DisplayManager {
         const summary = document.createElement('div');
         summary.style.marginBottom = '20px';
         summary.style.padding = '15px';
-        summary.style.backgroundColor = 'rgba(0, 212, 170, 0.1)';
+        summary.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
         summary.style.borderRadius = '8px';
-        summary.style.border = '1px solid rgba(0, 212, 170, 0.2)';
+        summary.style.border = '1px solid rgba(139, 92, 246, 0.2)';
         summary.style.transition = 'all 0.3s';
 
         const successCount = results.filter(r => r.success).length;
         const failCount = results.length - successCount;
 
         summary.innerHTML = `
-            <div style="font-weight: bold; margin-bottom: 8px; color: #00d4aa;">Test Summary:</div>
+            <div style="font-weight: bold; margin-bottom: 8px; color: #8b5cf6;">Test Summary:</div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <span>Total:</span>
                 <span style="font-weight: 600;">${results.length} APIs</span>
@@ -878,13 +878,13 @@ class DisplayManager {
         `;
 
         summary.onmouseover = () => {
-            summary.style.backgroundColor = 'rgba(0, 212, 170, 0.15)';
+            summary.style.backgroundColor = 'rgba(139, 92, 246, 0.15)';
             summary.style.transform = 'translateY(-2px)';
             summary.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
         };
 
         summary.onmouseout = () => {
-            summary.style.backgroundColor = 'rgba(0, 212, 170, 0.1)';
+            summary.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
             summary.style.transform = 'translateY(0)';
             summary.style.boxShadow = 'none';
         };
@@ -943,12 +943,12 @@ class DisplayManager {
 
                 const dataToggle = document.createElement('button');
                 dataToggle.textContent = 'Show response data';
-                dataToggle.style.background = 'rgba(0, 212, 170, 0.2)';
-                dataToggle.style.border = '1px solid #00d4aa';
+                dataToggle.style.background = 'rgba(139, 92, 246, 0.2)';
+                dataToggle.style.border = '1px solid #8b5cf6';
                 dataToggle.style.borderRadius = '6px';
                 dataToggle.style.padding = '5px 10px';
                 dataToggle.style.fontSize = '12px';
-                dataToggle.style.color = '#00d4aa';
+                dataToggle.style.color = '#8b5cf6';
                 dataToggle.style.cursor = 'pointer';
                 dataToggle.style.marginBottom = '8px';
                 dataToggle.style.transition = 'all 0.3s';
@@ -967,12 +967,12 @@ class DisplayManager {
                 dataContent.style.transition = 'all 0.3s';
 
                 dataToggle.onmouseover = () => {
-                    dataToggle.style.background = 'rgba(0, 212, 170, 0.3)';
+                    dataToggle.style.background = 'rgba(139, 92, 246, 0.3)';
                     dataToggle.style.transform = 'translateY(-1px)';
                 };
 
                 dataToggle.onmouseout = () => {
-                    dataToggle.style.background = 'rgba(0, 212, 170, 0.2)';
+                    dataToggle.style.background = 'rgba(139, 92, 246, 0.2)';
                     dataToggle.style.transform = 'translateY(0)';
                 };
 
@@ -1048,7 +1048,7 @@ class DisplayManager {
                 notification.style.color = 'white';
                 break;
             default:
-                notification.style.backgroundColor = 'rgba(0, 212, 170, 0.9)';
+                notification.style.backgroundColor = 'rgba(139, 92, 246, 0.9)';
                 notification.style.color = 'white';
         }
 

@@ -356,8 +356,8 @@ class ILoveYouTranslucent7 {
             deepScanBtnText.textContent = ' Start Deep Scan';
         }
         if (deepScanBtn) {
-            deepScanBtn.style.background = 'rgba(0, 212, 170, 0.3)';
-            deepScanBtn.style.color = '#00d4aa';
+            deepScanBtn.style.background = 'rgba(139, 92, 246, 0.3)';
+            deepScanBtn.style.color = '#8b5cf6';
         }
         if (configDiv) {
             configDiv.style.display = 'none';
@@ -396,7 +396,7 @@ class ILoveYouTranslucent7 {
 
         switch (type) {
             case 'success':
-                notification.style.backgroundColor = '#00d4aa';
+                notification.style.backgroundColor = '#8b5cf6';
                 notification.style.color = '#fff';
                 break;
             case 'error':
@@ -790,11 +790,11 @@ class ILoveYouTranslucent7 {
                 configItem.innerHTML = `
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
                         <div style="flex: 1;">
-                            <div style="font-weight: 600; color: #00d4aa; font-size: 14px; margin-bottom: 4px;">
+                            <div style="font-weight: 600; color: #8b5cf6; font-size: 14px; margin-bottom: 4px;">
                                 <input type="text" class="edit-name-input" value="${config.name}" style="
                                     background: transparent;
                                     border: none;
-                                    color: #00d4aa;
+                                    color: #8b5cf6;
                                     font-weight: 600;
                                     font-size: 14px;
                                     width: 100%;
@@ -829,9 +829,9 @@ class ILoveYouTranslucent7 {
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 5px; margin-left: 10px;">
                             <button class="edit-custom-regex-btn" data-key="${key}" style="
-                                background: rgba(0, 212, 170, 0.3);
-                                border: 1px solid rgba(0, 212, 170, 0.5);
-                                color: #00d4aa;
+                                background: rgba(139, 92, 246, 0.3);
+                                border: 1px solid rgba(139, 92, 246, 0.5);
+                                color: #8b5cf6;
                                 padding: 4px 8px;
                                 border-radius: 4px;
                                 font-size: 12px;
@@ -908,8 +908,8 @@ class ILoveYouTranslucent7 {
 
                     nameInput.removeAttribute('readonly');
                     patternTextarea.removeAttribute('readonly');
-                    nameInput.style.borderBottom = '1px solid #00d4aa';
-                    patternTextarea.style.border = '1px solid #00d4aa';
+                    nameInput.style.borderBottom = '1px solid #8b5cf6';
+                    patternTextarea.style.border = '1px solid #8b5cf6';
                     patternTextarea.style.background = 'rgba(0,0,0,0.5)';
 
 
@@ -1010,12 +1010,12 @@ class ILoveYouTranslucent7 {
 
 
                 editBtn.addEventListener('mouseenter', () => {
-                    editBtn.style.background = 'rgba(0, 212, 170, 0.5)';
-                    editBtn.style.borderColor = 'rgba(0, 212, 170, 0.7)';
+                    editBtn.style.background = 'rgba(139, 92, 246, 0.5)';
+                    editBtn.style.borderColor = 'rgba(139, 92, 246, 0.7)';
                 });
                 editBtn.addEventListener('mouseleave', () => {
-                    editBtn.style.background = 'rgba(0, 212, 170, 0.3)';
-                    editBtn.style.borderColor = 'rgba(0, 212, 170, 0.5)';
+                    editBtn.style.background = 'rgba(139, 92, 246, 0.3)';
+                    editBtn.style.borderColor = 'rgba(139, 92, 246, 0.5)';
                 });
 
                 saveBtn.addEventListener('mouseenter', () => {
@@ -1132,7 +1132,7 @@ class ILoveYouTranslucent7 {
                 domainDisplay.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <span style="font-size: 12px; opacity: 0.8;">Scanning:</span>
-                        <span style="color: #00d4aa; font-weight: 600;">${protocol}//${domain}${port}</span>
+                        <span style="color: #8b5cf6; font-weight: 600;">${protocol}//${domain}${port}</span>
                     </div>
                 `;
             }
@@ -1375,10 +1375,10 @@ function showUpdateModal(release) {
     `;
     modal.innerHTML = `
         <div style="background:#222;padding:30px 24px;border-radius:12px;max-width:350px;color:#fff;text-align:center;box-shadow:0 0 20px #000;">
-            <h2 style="color:#00d4aa;">Xuan8a1 notice: a new version is available:${release.tag_name}</h2>
+            <h2 style="color:#8b5cf6;">Xuan8a1 notice: a new version is available:${release.tag_name}</h2>
             <div style="margin:12px 0 18px 0;font-size:13px;">${release.name || ''}</div>
             <div style="margin-bottom:12px;font-size:12px;color:#ccc;">${release.body || ''}</div>
-            <a href="${release.html_url}" target="_blank" style="display:inline-block;padding:8px 18px;background:#00d4aa;color:#222;border-radius:6px;text-decoration:none;font-weight:bold;">Download</a>
+            <a href="${release.html_url}" target="_blank" style="display:inline-block;padding:8px 18px;background:#8b5cf6;color:#222;border-radius:6px;text-decoration:none;font-weight:bold;">Download</a>
             <br><button style="margin-top:18px;padding:6px 18px;background:#444;color:#fff;border:none;border-radius:6px;cursor:pointer;" id="closeUpdateModal">Close</button>
         </div>
     `;

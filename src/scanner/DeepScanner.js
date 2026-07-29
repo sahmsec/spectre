@@ -109,7 +109,7 @@ class DeepScanner {
             if (deepScanBtnText) {
                 deepScanBtnText.textContent = ' Start Deep Scan';
             }
-            deepScanBtn.style.background = 'rgba(0, 212, 170, 0.3)';
+            deepScanBtn.style.background = 'rgba(139, 92, 246, 0.3)';
         } else {
 
             this.startDeepScanWindow();
@@ -1258,7 +1258,7 @@ class DeepScanner {
         if (deepScanBtnText) {
             deepScanBtnText.textContent = ' Deep scan complete';
         }
-        deepScanBtn.style.background = 'rgba(0, 212, 170, 0.3)';
+        deepScanBtn.style.background = 'rgba(139, 92, 246, 0.3)';
 
 
         this.srcMiner.saveResults();
