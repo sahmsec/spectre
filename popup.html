@@ -1473,6 +1473,22 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 .title-mark{width:22px;height:22px;border-radius:6px;display:block;flex:none;
   box-shadow:0 2px 6px rgba(5,3,16,.5);}
 
+
+/* ===== header: logo far-left, roomier, solid readable wordmark ===== */
+.header{text-align:left !important;padding:15px 18px 13px !important;}
+.brand-lockup{display:flex;align-items:center;justify-content:flex-start !important;gap:12px;}
+.brand-mark{width:36px !important;height:36px !important;border-radius:10px;flex:none;
+  box-shadow:0 3px 10px rgba(5,3,16,.6);}
+.brand-text{display:flex;flex-direction:column;justify-content:center;gap:2px;}
+/* kill the gradient-clipped text that faded into the background */
+.header h1,.brand-text h1{
+  background:none !important;-webkit-background-clip:border-box !important;background-clip:border-box !important;
+  -webkit-text-fill-color:#ece9f5 !important;color:#ece9f5 !important;
+  font-size:20px !important;line-height:1.15 !important;margin:0 !important;letter-spacing:.3px;
+  display:block !important;}
+.brand-text .author-info{margin:0 !important;font-size:11px;color:#9a92c2 !important;line-height:1.2;}
+.current-domain{margin-top:9px;}
+
 </style>
 </head>
 <body>
@@ -1489,9 +1505,11 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
             <div class="header">
                 <div class="brand-lockup">
                     <img src="icons/icon48.png" alt="" class="brand-mark">
-                    <h1>Spectre</h1>
+                    <div class="brand-text">
+                        <h1>Spectre</h1>
+                        <div class="author-info">by Team Falcon</div>
+                    </div>
                 </div>
-                <div class="author-info">by Team Falcon</div>
                 <div id="currentDomain" class="current-domain"></div>
             </div>
 
