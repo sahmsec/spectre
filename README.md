@@ -253,16 +253,6 @@ push, and open a pull request.
 
 ---
 
-## Acknowledgments
-
-Spectre is built on the open-source **Phantom** project, released under the Apache-2.0 License.
-Full credit and thanks to the original authors and contributors:
-
-- Authors — D3f4ultX, findsomething, SnowEyes, 0xsdeo, zeroqing
-- Teams — Sunmu Security, Zhigong Shanfang Lab, Lingyang Web, Biaoge Daiwo
-- Upstream — [Team-intN18-SoybeanSeclab/Phantom](https://github.com/Team-intN18-SoybeanSeclab/Phantom)
-
----
 
 ## License
 
