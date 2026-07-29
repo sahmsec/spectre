@@ -1332,6 +1332,73 @@
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.14) !important;}
 ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.22) !important;}
 
+
+/* ===== Spectre motion system ===== */
+/* header */
+.header h1{letter-spacing:.5px;}
+.author-info{font-size:11px;color:#9d93c4 !important;opacity:.85;letter-spacing:.4px;margin-top:-1px;}
+
+/* buttons: lift + ripple halo (adapted from the reference .btn) */
+.action-button,.toggle-button,.inject-btn,.modify-btn,.delete-btn,.close-hook-btn,.boton-elegante,.btn{
+  position:relative;transition:transform .2s cubic-bezier(.2,.7,.3,1),box-shadow .2s ease,background-color .2s ease,border-color .2s ease;}
+.action-button:hover,.toggle-button:hover,.boton-elegante:hover{
+  transform:translateY(-3px) !important;box-shadow:0 10px 20px rgba(10,6,30,.45) !important;}
+.action-button:active,.toggle-button:active,.boton-elegante:active{
+  transform:translateY(-1px) !important;box-shadow:0 5px 10px rgba(10,6,30,.35) !important;}
+.inject-btn:hover,.modify-btn:hover,.delete-btn:hover,.close-hook-btn:hover{
+  transform:translateY(-2px);box-shadow:0 6px 14px rgba(10,6,30,.40);}
+.inject-btn:active,.modify-btn:active,.delete-btn:active,.close-hook-btn:active{transform:translateY(0);}
+/* ripple halo that scales out and fades */
+.action-button::after,.toggle-button::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;
+  background:rgba(167,139,250,.55);opacity:0;transition:transform .45s ease,opacity .45s ease;pointer-events:none;}
+.action-button:hover::after,.toggle-button:hover::after{transform:scaleX(1.25) scaleY(1.5);opacity:0;}
+.action-button:not(:hover)::after,.toggle-button:not(:hover)::after{transform:scale(1);opacity:.16;}
+/* primary scan button pulse-ready glow */
+.scan-button:hover{box-shadow:0 10px 24px rgba(124,58,237,.55) !important;}
+
+/* inputs: focus lift + lavender glow */
+input[type="text"],input[type="number"],textarea,select{
+  transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease;}
+input[type="text"]:focus,input[type="number"]:focus,textarea:focus,select:focus{
+  outline:none !important;border-color:#a78bfa !important;
+  box-shadow:0 0 0 3px rgba(167,139,250,.22),0 4px 12px rgba(10,6,30,.35) !important;}
+input[type="text"]:hover,input[type="number"]:hover,textarea:hover,select:hover{border-color:rgba(167,139,250,.55) !important;}
+
+/* cards / rows: hover lift */
+.script-item,.header-input-group,.item,.category{
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background-color .18s ease;}
+.script-item:hover,.header-input-group:hover{
+  transform:translateX(3px);border-color:rgba(167,139,250,.45) !important;box-shadow:0 6px 16px rgba(10,6,30,.35);}
+.item:hover{transform:translateX(2px);border-color:rgba(167,139,250,.50) !important;}
+
+/* nav tabs: animated underline */
+.nav-tab{position:relative;transition:color .2s ease,background-color .2s ease;}
+.nav-tab::before{content:"";position:absolute;left:50%;bottom:4px;width:0;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,#a78bfa,#7c3aed);transform:translateX(-50%);transition:width .25s ease;}
+.nav-tab:hover::before{width:60%;}
+.nav-tab.active::before{width:70%;}
+
+/* entrance: fade-up for panels */
+@keyframes spectreUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.api-test-section,.category,.script-item,.header-input-group{animation:spectreUp .32s ease both;}
+.api-test-section:nth-of-type(2){animation-delay:.05s;}
+.api-test-section:nth-of-type(3){animation-delay:.1s;}
+.script-item:nth-of-type(2),.header-input-group:nth-of-type(2){animation-delay:.04s;}
+.script-item:nth-of-type(3),.header-input-group:nth-of-type(3){animation-delay:.08s;}
+.script-item:nth-of-type(4),.header-input-group:nth-of-type(4){animation-delay:.12s;}
+
+/* checkbox + badge pop */
+input[type="checkbox"]{transition:transform .15s ease;}
+input[type="checkbox"]:hover{transform:scale(1.12);}
+.count-badge{transition:transform .18s ease;}
+.category:hover .count-badge{transform:scale(1.08);}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+}
+
 </style>
 </head>
 <body>
@@ -1347,6 +1414,7 @@
 
             <div class="header">
                 <h1>Spectre</h1>
+                <div class="author-info">by Team Falcon</div>
                 <div id="currentDomain" class="current-domain"></div>
             </div>
 
