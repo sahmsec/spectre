@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="icons/icon128.png" alt="Spectre" width="96" height="96">
+
 # Spectre
 
 **Web reconnaissance and vulnerability hunting, right in your browser.**

@@ -551,12 +551,28 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 .action-button:hover,.toggle-button:hover{transform:translateY(-2px) !important;}
 .action-button:active,.toggle-button:active{transform:translateY(0) !important;}
 
+
+/* ===== brand lockup: mark + wordmark as one optically-centred unit ===== */
+.brand-lockup{display:flex;align-items:center;justify-content:center;gap:9px;line-height:1;}
+.brand-lockup h1{margin:0 !important;line-height:1;}
+.brand-mark{width:24px;height:24px;border-radius:7px;display:block;flex:none;
+  box-shadow:0 2px 6px rgba(5,3,16,.55);}
+.author-info{margin-top:3px;}
+/* secondary windows: smaller mark, optically aligned to the cap height */
+.header h1{display:flex;align-items:center;justify-content:center;gap:9px;}
+.title-mark{width:22px;height:22px;border-radius:6px;display:block;flex:none;
+  box-shadow:0 2px 6px rgba(5,3,16,.5);}
+
+
+/* hide leftover bright decorative ray/lines (clash with the dark theme) */
+.ray,.line,.topl,.bottoml,.leftl,.rightl{display:none !important;}
+
 </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>API Batch Test Results</h1>
+            <h1><img src="icons/icon48.png" alt="" class="title-mark">API Batch Test Results</h1>
             <p id="testInfo">Waiting for test configuration...</p>
             <p id="baseUrlInfo" style="opacity:.8;font-size:12px;margin-top:6px;"></p>
         </div>

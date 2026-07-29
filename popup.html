@@ -1461,6 +1461,18 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 .action-button:hover,.toggle-button:hover{transform:translateY(-2px) !important;}
 .action-button:active,.toggle-button:active{transform:translateY(0) !important;}
 
+
+/* ===== brand lockup: mark + wordmark as one optically-centred unit ===== */
+.brand-lockup{display:flex;align-items:center;justify-content:center;gap:9px;line-height:1;}
+.brand-lockup h1{margin:0 !important;line-height:1;}
+.brand-mark{width:24px;height:24px;border-radius:7px;display:block;flex:none;
+  box-shadow:0 2px 6px rgba(5,3,16,.55);}
+.author-info{margin-top:3px;}
+/* secondary windows: smaller mark, optically aligned to the cap height */
+.header h1{display:flex;align-items:center;justify-content:center;gap:9px;}
+.title-mark{width:22px;height:22px;border-radius:6px;display:block;flex:none;
+  box-shadow:0 2px 6px rgba(5,3,16,.5);}
+
 </style>
 </head>
 <body>
@@ -1475,7 +1487,10 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 
 
             <div class="header">
-                <h1>Spectre</h1>
+                <div class="brand-lockup">
+                    <img src="icons/icon48.png" alt="" class="brand-mark">
+                    <h1>Spectre</h1>
+                </div>
                 <div class="author-info">by Team Falcon</div>
                 <div id="currentDomain" class="current-domain"></div>
             </div>
