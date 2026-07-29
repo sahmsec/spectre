@@ -3,7 +3,7 @@
   "name": "Spectre",
   "version": "1.8.1",
   "description": "A professional SRC vulnerability-hunting assistant that automatically extracts sensitive information from pages",
-  "author": "Arena Web Security",
+  "author": "Spectre",
   
   "permissions": [
     "activeTab",

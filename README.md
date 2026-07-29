@@ -2,7 +2,7 @@
   <h1 align="center">Spectre</h1>
 
   <p align="center">
-    A web vulnerability-hunting and reconnaissance extension by <strong>Arena Web Security</strong>
+    A web vulnerability-hunting and reconnaissance browser extension
     <br />
     Built for teaching students to discover and understand web security flaws
   </p>
@@ -11,7 +11,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About Spectre
 
-Spectre is a **browser extension** for web vulnerability hunting and reconnaissance, developed by **Arena Web Security** as a hands-on teaching tool. It gives students and security researchers an efficient, intelligent way to surface the APIs, endpoints, domains, and sensitive information a web page exposes — turning any site into a live lab for learning how real-world reconnaissance works.
+Spectre is a **browser extension** for web vulnerability hunting and reconnaissance, built as a hands-on teaching tool. It gives students and security researchers an efficient, intelligent way to surface the APIs, endpoints, domains, and sensitive information a web page exposes — turning any site into a live lab for learning how real-world reconnaissance works.
 
 ### Key Advantages
 
@@ -300,7 +300,7 @@ We welcome contributions from the community.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Spectre is maintained by **Arena Web Security** and is built on the open-source **Phantom** project, released under the Apache-2.0 License. Full credit and thanks to the original authors and contributors:
+Spectre is built on the open-source **Phantom** project, released under the Apache-2.0 License. Full credit and thanks to the original authors and contributors:
 
 - Original authors: D3f4ultX, findsomething, SnowEyes, 0xsdeo, zeroqing
 - Original teams: Sunmu Security, Zhigong Shanfang Lab, Lingyang Web, Biaoge Daiwo
@@ -325,6 +325,6 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENS
 ---
 
 <div align="center">
-  <p><strong>Spectre</strong> — by Arena Web Security</p>
+  <p><strong>Spectre</strong></p>
   <p>Teaching the next generation to find what others miss</p>
 </div>
