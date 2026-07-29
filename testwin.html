@@ -22,7 +22,7 @@
         .container {
             max-width: 100%;
             margin: 0 auto;
-            background: radial-gradient(125% 90% at 82% -12%, rgba(139, 92, 246, 0.32), transparent 58%), linear-gradient(158deg, #1e1b3a 0%, #241f47 60%, #2a2450 100%);
+            background: radial-gradient(130% 95% at 80% -10%, rgba(139, 92, 246, 0.40), transparent 62%), linear-gradient(158deg, #241c4d 0%, #2c2360 55%, #352c6e 100%);
             border-radius: 12px;
             padding: 20px;
             border: 1px solid rgba(167, 139, 250, 0.10);
@@ -401,7 +401,28 @@
 .modify-btn:hover{background:rgba(167,139,250,0.18) !important;}
 .close-hook-btn{background:rgba(148,163,184,0.12) !important;border:1px solid rgba(148,163,184,0.40) !important;color:#cbd5e1 !important;}
 
-    </style>
+    
+/* ===== cohesive transparent UI: no dark ash, no hover FX, no violet bar ===== */
+.action-button{background:transparent !important;border:1px solid rgba(167,139,250,0.32) !important;color:#ece9f5 !important;backdrop-filter:none !important;box-shadow:none !important;}
+.action-button:hover{background:rgba(167,139,250,0.10) !important;transform:none !important;box-shadow:none !important;}
+.action-button .text{color:#ece9f5 !important;}
+.action-button .border-tl,.action-button .border-tr,.action-button .border-bl,.action-button .border-br,.action-button .shine{display:none !important;}
+.scan-button,.scan-button:hover{background:#7c3aed !important;border:1px solid #7c3aed !important;}
+.scan-button,.scan-button .text{color:#ffffff !important;}
+.toggle-button{background:transparent !important;border:1px solid rgba(167,139,250,0.28) !important;color:#cbc3ea !important;box-shadow:none !important;}
+.toggle-button:hover{background:rgba(167,139,250,0.10) !important;}
+/* buttons on white modals need dark text */
+.modal-content .action-button,.modal-content .action-button .text{background:rgba(124,58,237,0.08) !important;color:#6d28d9 !important;border:1px solid rgba(124,58,237,0.40) !important;}
+.modal-content .scan-button,.modal-content .scan-button .text{background:#7c3aed !important;color:#ffffff !important;}
+/* panels: subtle transparent, not dark ash */
+.api-test-section{background:rgba(255,255,255,0.03) !important;border:1px solid rgba(167,139,250,0.20) !important;box-shadow:none !important;}
+.api-test-section:hover{transform:none !important;box-shadow:none !important;border-color:rgba(167,139,250,0.20) !important;}
+.deep-scan-config,.result-category,.progress-section,.stats{background:rgba(255,255,255,0.03) !important;}
+/* subtle neutral scrollbar (removes the bright violet bar) */
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.14) !important;}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.22) !important;}
+
+</style>
 </head>
 <body>
     <div class="container">
