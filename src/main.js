@@ -777,7 +777,7 @@ class ILoveYouTranslucent7 {
                 const configItem = document.createElement('div');
                 configItem.className = 'custom-regex-item';
                 configItem.style.cssText = `
-                    background: rgba(60, 46, 120, 0.22);
+                    background: rgba(58, 44, 118, 0.18);
                     border: 1px solid rgba(167, 139, 250, 0.30);
                     border-radius: 8px;
                     padding: 12px;
