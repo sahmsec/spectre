@@ -1,0 +1,154 @@
+{
+  "manifest_version": 3,
+  "name": "Spectre",
+  "version": "1.8.1",
+  "description": "A professional SRC vulnerability-hunting assistant that automatically extracts sensitive information from pages",
+  "author": "Arena Web Security",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "windows",
+    "cookies",
+    "offscreen",
+    "scripting",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "filters/apifilter.js", 
+        "filters/domainfilter.js", 
+        "filters/idfilter.js",
+        "src/scanner/PatternExtractor.js",
+        "src/scanner/ContentExtractor.js",
+        "libs/acorn.min.js",
+        "src/scanner/ast/parser.js",
+        "src/scanner/ast/utils/hash.js",
+        "src/scanner/ast/utils/context.js",
+        "src/scanner/ast/visitors/ASTVisitor.js",
+        "src/scanner/ast/visitors/CredentialVisitor.js",
+        "src/scanner/ast/visitors/APIEndpointVisitor.js",
+        "src/scanner/ast/visitors/SensitiveFunctionVisitor.js",
+        "src/scanner/ast/visitors/ConfigObjectVisitor.js",
+        "src/scanner/ast/visitors/EncodedStringVisitor.js",
+        "src/scanner/ast/ASTExtractor.js",
+        "src/scanner/ast/utils/ResultMerger.js",
+        "src/scanner/ast/ASTBridge.js",
+        "src/scanner/ast/index.js",
+        "src/scanner/vue/utils/serializer.js",
+        "src/scanner/vue/utils/pathUtils.js",
+        "src/scanner/vue/VueFinder.js",
+        "src/scanner/vue/RouterAnalyzer.js",
+        "src/scanner/vue/GuardPatcher.js",
+        "src/scanner/vue/VueDetector.js",
+        "src/scanner/vue/VueDetectorBridge.js",
+        "src/scanner/vue/index.js",
+        "src/scanner/webpack/utils/urlUtils.js",
+        "src/scanner/webpack/utils/patternUtils.js",
+        "src/scanner/webpack/utils/errorHandler.js",
+        "src/scanner/webpack/utils/chunkProcessor.js",
+        "src/scanner/webpack/WebpackDetector.js",
+        "src/scanner/webpack/ChunkAnalyzer.js",
+        "src/scanner/webpack/SourceMapParser.js",
+        "src/scanner/webpack/RuntimeAnalyzer.js",
+        "src/scanner/webpack/ModuleAnalyzer.js",
+        "src/scanner/webpack/SensitiveExtractor.js",
+        "src/scanner/webpack/WebpackScannerBridge.js",
+        "src/scanner/webpack/WebpackResultRenderer.js",
+        "src/scanner/webpack/index.js",
+        "content.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "filters/apifilter.js", 
+        "filters/domainfilter.js", 
+        "filters/idfilter.js",
+        "src/scanner/PatternExtractor.js",
+        "src/scanner/ContentExtractor.js",
+        "src/scanner/DeepScanWindow.js",
+        "src/core/injector.js",
+        "testwin.html",
+        "deepscan.html",
+        "src/api/testwin.js",
+        "src/scanner/deepscan.js",
+        "offscreen.html",
+        "offscreen.js",
+        "libs/acorn.min.js",
+        "src/scanner/ast/parser.js",
+        "src/scanner/ast/utils/hash.js",
+        "src/scanner/ast/utils/context.js",
+        "src/scanner/ast/visitors/ASTVisitor.js",
+        "src/scanner/ast/visitors/CredentialVisitor.js",
+        "src/scanner/ast/visitors/APIEndpointVisitor.js",
+        "src/scanner/ast/visitors/SensitiveFunctionVisitor.js",
+        "src/scanner/ast/visitors/ConfigObjectVisitor.js",
+        "src/scanner/ast/visitors/EncodedStringVisitor.js",
+        "src/scanner/ast/ASTExtractor.js",
+        "src/scanner/ast/utils/ResultMerger.js",
+        "src/scanner/ast/ASTBridge.js",
+        "src/scanner/ast/index.js",
+        "src/scanner/vue/utils/serializer.js",
+        "src/scanner/vue/utils/pathUtils.js",
+        "src/scanner/vue/VueFinder.js",
+        "src/scanner/vue/RouterAnalyzer.js",
+        "src/scanner/vue/GuardPatcher.js",
+        "src/scanner/vue/VueDetector.js",
+        "src/scanner/vue/VueDetectorBridge.js",
+        "src/scanner/vue/index.js",
+        "src/scanner/webpack/utils/urlUtils.js",
+        "src/scanner/webpack/utils/patternUtils.js",
+        "src/scanner/webpack/utils/errorHandler.js",
+        "src/scanner/webpack/utils/chunkProcessor.js",
+        "src/scanner/webpack/WebpackDetector.js",
+        "src/scanner/webpack/ChunkAnalyzer.js",
+        "src/scanner/webpack/SourceMapParser.js",
+        "src/scanner/webpack/RuntimeAnalyzer.js",
+        "src/scanner/webpack/ModuleAnalyzer.js",
+        "src/scanner/webpack/SensitiveExtractor.js",
+        "src/scanner/webpack/WebpackScannerBridge.js",
+        "src/scanner/webpack/WebpackResultRenderer.js",
+        "src/scanner/webpack/index.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Spectre",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+
+}
+

@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 640px;
+            min-height: 640px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgb(30, 30, 30);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            width: 100%;
+            min-height: 650px;
+            border-radius: 10px;
+            padding: 1px;
+            background: rgb(30, 30, 30);
+            position: relative;
+        }
+
+
+
+        @keyframes moveDot {
+            0%, 100% { top: 10%; right: 10%; }
+            25% { top: 10%; right: calc(100% - 35px); }
+            50% { top: calc(100% - 30px); right: calc(100% - 35px); }
+            75% { top: calc(100% - 30px); right: 10%; }
+        }
+
+        .card {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            min-height: 648px;
+            border-radius: 10px;
+            background: rgb(45, 45, 45);
+            position: relative;
+            color: #fff;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+            transition: all 0.4s;
+        }
+
+        .card:hover {
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 8px rgba(0, 0, 0, 0.8);
+            background: rgb(30, 30, 30);
+        }
+
+
+        .card .first-content {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 200px;
+            left: -30%;
+            top: -30%;
+            background: #ffffff;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: 0;
+            pointer-events: none;
+            transition: all 0.4s;
+        }
+
+        .card:hover::after {
+            opacity: 0.6;
+            width: 280px;
+            height: 220px;
+            filter: blur(70px);
+        }
+
+
+
+
+
+
+
+        .bottoml {
+            bottom: 10%;
+        }
+
+        .leftl {
+            left: 10%;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, #747474 30%, #222424 70%);
+        }
+
+        .rightl {
+            right: 10%;
+            width: 1px;
+            height: 100%;
+        }
+
+
+        .header {
+            text-align: center;
+            padding: 12px 15px 10px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: bolder;
+            background: linear-gradient(45deg, rgb(30, 30, 30) 4%, #fff, rgb(30, 30, 30));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 3px;
+        }
+
+        .author-info {
+            font-size: 11px;
+            color: #888;
+            opacity: 0.8;
+        }
+
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 0 15px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 6px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 8px 12px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: color 0.2s ease, background 0.2s ease;
+            color: #888;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .nav-tab:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            transition: all 0.3s;
+        }
+
+        .nav-tab:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .nav-tab.active::after {
+            width: 90%;
+            left: 5%;
+            background: linear-gradient(90deg, transparent, #00d4aa, transparent);
+        }
+
+
+        .page-content {
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .action-button {
+            position: relative;
+            cursor: pointer;
+            padding: 12px 16px;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(31, 41, 55, 0.3);
+            backdrop-filter: blur(6px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        .action-button:focus {
+            outline: 2px solid white;
+            outline-offset: 4px;
+        }
+
+        .action-button span.text {
+            position: relative;
+            z-index: 20;
+        }
+
+        .action-button .shine {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 42px;
+            background: rgba(255, 255, 255, 0.2);
+            filter: blur(0);
+            transform: skew(-13deg) translateX(-120%);
+            transition: transform 1s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .action-button:hover .shine {
+            transform: skew(-13deg) translateX(120%);
+        }
+        .action-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 20px 25px -5px rgba(107, 114, 128, 0.5);
+        }
+
+        .action-button .border-tl {
+            width: 50%;
+            transition: all 0.3s;
+            border: 2px solid #D4EDF9;
+            border-right: none;
+            border-bottom: none;
+            position: absolute;
+            height: 90%;
+            border-radius: 8px 0 0 0;
+            top: 0;
+            left: 0;
+        }
+
+        .action-button .border-tr {
+            width: 50%;
+            transition: all 0.3s;
+            border: 2px solid #D4EDF9;
+            border-left: none;
+            border-bottom: none;
+            position: absolute;
+            height: 90%;
+            border-radius: 0 8px 0 0;
+            top: 0;
+            right: 0;
+        }
+
+        .action-button:hover .border-tr {
+            height: 90%;
+        }
+
+        .action-button .border-bl {
+            width: 50%;
+            transition: all 0.3s;
+            border: 2px solid #D4EDF9;
+            border-right: none;
+            border-top: none;
+            position: absolute;
+            height: 90%;
+            border-radius: 0 0 0 8px;
+            left: 0;
+            bottom: 0;
+        }
+
+        .action-button:hover .border-bl {
+            height: 90%;
+        }
+
+        .action-button .border-br {
+            width: 50%;
+            transition: all 0.3s;
+            border: 2px solid #D4EDF9;
+            border-left: none;
+            border-top: none;
+            position: absolute;
+            height: 20%;
+            border-radius: 0 0 8px 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .action-button .border-tl,
+        .action-button .border-tr,
+        .action-button .border-bl,
+        .action-button .border-br {
+            display: none !important;
+        }
+
+
+        .scan-button {
+            background: #3b82f6;
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        .scan-button:hover {
+            background: #2563eb;
+        }
+        .scan-button.scanning {
+            animation: bluepulse 2s infinite;
+        }
+        @keyframes bluepulse {
+            0% { box-shadow: 0 0 5px rgba(59,130,246,0.25); }
+            50% { box-shadow: 0 0 18px rgba(59,130,246,0.45); }
+            100% { box-shadow: 0 0 5px rgba(59,130,246,0.25); }
+        }
+
+
+        .deep-scan-config {
+            background: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgba(90, 90, 90, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .deep-scan-config:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .config-title {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .config-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .config-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .config-option input[type="checkbox"] {
+            accent-color: #3b82f6;
+        }
+
+
+        .config-option small {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .config-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .config-controls label {
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .config-controls select {
+            padding: 4px 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+
+        .progress-container {
+            margin-top: 10px;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .progress-bar-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(45deg, #00d4aa, #0ea5e9);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+
+        .api-test-section {
+            background: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgba(90, 90, 90, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .api-test-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .test-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .test-controls select {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: 1px solid #444;
+            font-size: 12px;
+        }
+
+
+        .results-container {
+            max-height: 300px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .category {
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .category:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .category-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .count-badge {
+            background: linear-gradient(45deg, #60a5fa, #3b82f6);
+            color: #0b1220;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .category-content {
+            max-height: 180px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-size: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .category-content.collapsed {
+            display: none;
+        }
+
+        .item {
+            padding: 4px 9px;
+            margin: 2px 0;
+            background: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgba(90, 90, 90, 0.3);
+            border-radius: 4px;
+            word-break: break-all;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+            color: #ccc;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        .item.copied {
+            background: rgba(59, 130, 246, 0.16);
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        .item-more {
+            text-align: center;
+            color: #60a5fa;
+            font-weight: 600;
+            background: rgba(59, 130, 246, 0.08);
+            border-style: dashed;
+        }
+
+        .item-more:hover {
+            background: rgba(59, 130, 246, 0.16);
+            color: #93c5fd;
+        }
+
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #00d4aa;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 212, 170, 0.3);
+            border-top: 2px solid #00d4aa;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+        .stats {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            font-size: 12px;
+            color: #ccc;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats:hover {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80%;
+            background: #1a1a2e;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal h3 {
+            color: #00d4aa;
+            margin-bottom: 15px;
+        }
+
+
+        .export-modal-content {
+            max-width: 500px;
+        }
+
+        .export-modal-body {
+            padding: 0;
+        }
+
+        .export-modal-body p {
+            margin-bottom: 20px;
+            color: #ccc;
+            text-align: center;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .export-option {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(45deg, #00d4aa, #0ea5e9);
+        }
+
+        .export-option.export-csv {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+        }
+
+        .export-option small {
+            opacity: 0.9;
+            font-size: 0.8em;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .export-option:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .current-domain {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+
+        .headers-controls {
+            margin-bottom: 15px;
+        }
+
+        .header-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: flex-start;
+        }
+
+        .header-input-group input[type="text"] {
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        .header-key-input {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .header-value-input {
+            flex: 2;
+            min-width: 200px;
+        }
+
+        .remove-header-btn {
+            padding: 8px 12px;
+            background: rgba(231, 76, 60, 0.3);
+            border: 1px solid rgba(231, 76, 60, 0.5);
+            border-radius: 6px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+            min-width: 60px;
+        }
+
+        .remove-header-btn:hover {
+            background: rgba(231, 76, 60, 0.5);
+            border-color: rgba(231, 76, 60, 0.7);
+            transform: translateY(-1px);
+        }
+
+        .headers-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .headers-actions .action-button {
+            flex: 1;
+        }
+
+        #headersContainer {
+            margin-bottom: 15px;
+        }
+
+        .header-input-group input[type="text"]:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 5px rgba(0, 212, 170, 0.3);
+        }
+
+
+        .script-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin: 4px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .script-name {
+            flex: 1;
+            color: #fff;
+            font-size: 12px;
+            margin-right: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 120px;
+        }
+
+
+        .script-actions {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+
+        .inject-btn, .modify-btn, .delete-btn {
+            padding: 4px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+            transition: all 0.2s ease;
+            min-width: 36px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+
+        .inject-btn:hover, .modify-btn:hover, .delete-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+
+        .inject-btn:active, .modify-btn:active, .delete-btn:active {
+            transform: translateY(0);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .regex-config {
+            margin-bottom: 15px;
+        }
+
+        .regex-item {
+            margin-bottom: 15px;
+        }
+
+        .regex-item label {
+            display: block;
+            font-size: 12px;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .regex-item textarea {
+            width: 100%;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            resize: vertical;
+            min-height: 40px;
+        }
+
+        .regex-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .regex-actions .action-button {
+            flex: 1;
+        }
+
+
+
+        .cookie-input-group textarea:focus,
+        .regex-item textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 5px rgba(0, 212, 170, 0.3);
+        }
+
+
+        .custom-regex-form .regex-item {
+            margin-bottom: 15px;
+        }
+
+        .custom-regex-form .regex-item label {
+            display: block;
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .custom-regex-form input[type="text"]:focus,
+        .custom-regex-form textarea:focus {
+            outline: none;
+            border-color: #00d4aa;
+            box-shadow: 0 0 8px rgba(0, 212, 170, 0.4);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .custom-regex-form input[type="text"]:hover,
+        .custom-regex-form textarea:hover {
+            border-color: #666;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .custom-regex-actions button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #cancelCustomRegexBtn:hover {
+            background: rgba(231, 76, 60, 0.5) !important;
+            border-color: rgba(231, 76, 60, 0.7) !important;
+        }
+
+
+
+
+        .toggle-buttons-container {
+            text-align: center;
+            margin: -5px 0 10px 0;
+        }
+
+        .toggle-button {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 6px 15px;
+            color: #ccc;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .toggle-button:hover {
+            background: rgba(0, 212, 170, 0.2);
+            border-color: #00d4aa;
+            color: #00d4aa;
+            transform: translateY(-1px);
+        }
+
+        .toggle-icon {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-button.collapsed .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .scan-buttons-container {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .scan-buttons-container.collapsed {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .results-container {
+            max-height: 440px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .results-container.expanded {
+            max-height: 620px;
+        }
+
+
+        .page-content {
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .settings-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .settings-message.success {
+            background: #00d4aa;
+        }
+
+        .settings-message.error {
+            background: #e74c3c;
+        }
+
+        .settings-message.warning {
+            background: #f39c12;
+        }
+
+
+        .ray, .line { display: none !important; }
+        .results-container .category:nth-of-type(6n+1) .category-title { color: #93c5fd; }
+        .results-container .category:nth-of-type(6n+2) .category-title { color: #a5b4fc; }
+        .results-container .category:nth-of-type(6n+3) .category-title { color: #6ee7b7; }
+        .results-container .category:nth-of-type(6n+4) .category-title { color: #fcd34d; }
+        .results-container .category:nth-of-type(6n+5) .category-title { color: #fca5a5; }
+        .results-container .category:nth-of-type(6n+6) .category-title { color: #fde68a; }
+
+
+        .btn {
+          --color: #00A97F;
+          --color2: #212121;
+          padding: 0.45em 0.9em;
+          background-color: transparent;
+          border-radius: 10px;
+          border: 1.5px solid var(--color);
+          transition: .5s ease;
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+          z-index: 1;
+          font-weight: 500;
+          font-size: 12px;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          text-transform: none;
+          color: var(--color);
+          line-height: 1;
+        }
+        .btn::before {
+          content: '';
+          display: block;
+          height: 110%;
+          width: 310%;
+          transform: translate(0, -50%);
+          position: absolute;
+          top: 50%;
+          left: -5%;
+          z-index: -1;
+          transition: .7s;
+          background: -moz-linear-gradient(45deg, var(--color2) 33%, var(--color) 66%);
+          background: -webkit-linear-gradient(45deg, var(--color2) 33%, var(--color) 66%);
+          background: linear-gradient(45deg, var(--color2) 33%, var(--color) 66%);
+        }
+        .btn:hover::before {
+          left: -200%;
+        }
+        .btn:hover {
+          color: var(--color2);
+        }
+        .btn:active {
+          transform: scale(.98);
+          filter: brightness(.9);
+        }
+
+        .script-info {
+            font-size: 11px;
+            color: #888;
+            margin-left: 10px;
+        }
+
+
+
+        .header-input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            gap: 8px;
+        }
+
+        .header-input-group input {
+            flex: 1;
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 3px;
+        }
+
+        .header-input-group input[readonly] {
+            background: #444;
+            cursor: default;
+        }
+
+
+        .header-input-group span {
+            flex: 0 1 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #fff;
+            font-size: 14px;
+        }
+
+
+        .inject-btn, .modify-btn, .delete-btn, .close-hook-btn {
+            padding: 6px 12px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #4a4a4a;
+        }
+
+        .inject-btn:hover, .modify-btn:hover, .delete-btn:hover {
+            background: #5a5a5a;
+        }
+
+        .close-hook-btn {
+            background: linear-gradient(180deg, #16a34a, #15803d);
+            border-color: #22c55e;
+        }
+        .close-hook-btn:hover {
+            background: linear-gradient(180deg, #22c55e, #16a34a);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #6366f1);
+            border-radius: 8px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #60a5fa, #818cf8);
+            background-clip: padding-box;
+        }
+
+        .card {
+            background: linear-gradient(160deg, rgb(48, 48, 52) 0%, rgb(38, 38, 42) 100%);
+        }
+
+        .nav-tabs {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .nav-tab.active {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.28), rgba(59, 130, 246, 0.12));
+            border-color: rgba(96, 165, 250, 0.45);
+        }
+
+        .category {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(0, 0, 0, 0.22));
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .category::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #3b82f6, #6366f1);
+            opacity: 0.65;
+        }
+        .category-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 6px;
+        }
+        .category-title {
+            letter-spacing: 0.2px;
+        }
+
+        .count-badge {
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.35);
+            min-width: 18px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .item {
+            line-height: 1.45;
+        }
+        .item:hover {
+            box-shadow: inset 2px 0 0 #3b82f6;
+        }
+
+        .config-title {
+            background: linear-gradient(90deg, #93c5fd, #c4b5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            align-items: start;
+        }
+        .results-container .category {
+            margin-bottom: 0;
+        }
+        .results-container > div:not(.category) {
+            grid-column: 1 / -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="dot"></div>
+        <div class="card">
+            <div class="ray"></div>
+            <div class="line topl"></div>
+            <div class="line bottoml"></div>
+            <div class="line leftl"></div>
+            <div class="line rightl"></div>
+
+
+            <div class="header">
+                <h1>Spectre</h1>
+                <div class="author-info">by Arena Web Security</div>
+                <div id="currentDomain" class="current-domain"></div>
+            </div>
+
+
+            <div class="nav-tabs">
+                <div class="nav-tab active" data-page="scan">Scan</div>
+                <div class="nav-tab" data-page="deep">Deep Scan</div>
+                <div class="nav-tab" data-page="test">API Test</div>
+                <div class="nav-tab" data-page="js-injection">JS Inject</div>
+                <div class="nav-tab" data-page="settings">Settings</div>
+                <div class="nav-tab" data-page="about">About</div>
+            </div>
+
+
+
+            <div class="page-content">
+
+                <div class="page active" id="scan-page">
+                    <div class="scan-buttons-container" id="scanButtonsContainer">
+                        <button id="scanBtn" class="action-button scan-button">
+                            <span class="text">Start Scan</span>
+                            <span class="shine"></span>
+                            <span class="border-tl"></span>
+                            <span class="border-tr"></span>
+                            <span class="border-bl"></span>
+                            <span class="border-br"></span>
+                        </button>
+
+                        <button id="clearBtn" class="action-button">
+                            <span class="text">Clear Results</span>
+                            <span class="shine"></span>
+                            <span class="border-tl"></span>
+                            <span class="border-tr"></span>
+                            <span class="border-bl"></span>
+                            <span class="border-br"></span>
+                        </button>
+
+                        <button id="exportBtn" class="action-button">
+                            <span class="text">Export Data</span>
+                            <span class="shine"></span>
+                            <span class="border-tl"></span>
+                            <span class="border-tr"></span>
+                            <span class="border-bl"></span>
+                            <span class="border-br"></span>
+                        </button>
+                    </div>
+
+
+                    <div class="toggle-buttons-container">
+                        <button id="toggleButtonsBtn" class="toggle-button">
+                            <span class="toggle-icon">▲</span>
+                            <span class="toggle-text">Hide buttons</span>
+                        </button>
+                    </div>
+
+                    <div id="loading" class="loading" style="display: none;">
+                        Scanning page content...
+                    </div>
+
+                    <div id="results" class="results-container">
+
+                    </div>
+                </div>
+
+
+                <div class="page" id="deep-page">
+                    <button id="deepScanBtn" class="action-button">
+                        <span class="text">Deep Recursive Scan</span>
+                        <span class="shine"></span>
+                        <span class="border-tl"></span>
+                        <span class="border-tr"></span>
+                        <span class="border-bl"></span>
+                        <span class="border-br"></span>
+                    </button>
+
+                    <div id="deepScanConfig" class="deep-scan-config" style="display: none;">
+                        <div class="config-title">Deep Scan Configuration</div>
+                        <div class="config-options">
+                            <label class="config-option">
+                                <input type="checkbox" id="scanJsFiles" checked>
+                                Scan JS files
+                            </label>
+                            <label class="config-option">
+                                <input type="checkbox" id="scanHtmlFiles" checked>
+                                Scan HTML files
+                            </label>
+                            <label class="config-option">
+                                <input type="checkbox" id="scanApiFiles" checked>
+                                Scan API endpoints
+                            </label>
+                        </div>
+                        <div class="config-controls">
+                            <label>Max Depth:</label>
+                            <select id="maxDepth">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <label>Concurrency:</label>
+                            <select id="concurrency">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5">5</option>
+                                <option value="8" selected>8</option>
+                                <option value="16">16</option>
+                                <option value="32">32</option>
+                                <option value="64">64</option>
+                            </select>
+                            <label>Timeout:</label>
+                            <select id="timeout">
+                                <option value="3">3s</option>
+                                <option value="5" selected>5s</option>
+                                <option value="10">10s</option>
+                                <option value="15">15s</option>
+                                <option value="30">30s</option>
+                            </select>
+                        </div>
+                        <div id="deepScanProgress" class="progress-container" style="display: none;">
+                            <div class="progress-text">Scan Progress: <span id="progressText">0/0</span></div>
+                            <div class="progress-bar-container">
+                                <div id="progressBar" class="progress-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="page" id="js-injection-page">
+
+                    <div class="api-test-section">
+                        <div class="config-title">Script Manager</div>
+
+
+
+                        <div class="headers-controls">
+                            <div id="scriptsContainer">
+
+                                <div class="header-input-group" style="display: none;" id="scriptTemplate">
+                                    <span style="flex: 0 1 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #fff; font-size: 14px;">Script name</span>
+                                    <button class="inject-btn" title="Inject">Inject</button>
+                                    <button class="modify-btn" title="Edit">Edit</button>
+                                    <button class="delete-btn" title="Delete">Delete</button>
+                                </div>
+
+
+                                <div id="noScriptsMessage" style="padding: 20px; text-align: center; color: #888; font-size: 12px;">
+                                    No saved scripts yet. Click the "Add Script" button below to create one
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="test-controls" style="margin-top: 15px;">
+                            <button id="addScriptBtn" class="action-button" style="flex: 1;">
+                                <span class="text">Add Script</span>
+                                <span class="shine"></span>
+                                <span class="border-tl"></span>
+                                <span class="border-tr"></span>
+                                <span class="border-bl"></span>
+                                <span class="border-br"></span>
+                            </button>
+                        </div>
+
+
+                        <input type="file" id="importScriptsFile" accept=".json" style="display: none;">
+                    </div>
+                </div>
+
+
+                <div class="page" id="test-page">
+                    <div class="api-test-section">
+                        <div class="config-title">Batch API Testing</div>
+                        <div class="test-controls">
+                            <select id="requestMethod">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                            </select>
+                            <select id="categorySelect">
+                                <option value="">Select categories to test</option>
+                                <option value="absoluteApis">Absolute Path API</option>
+                                <option value="relativeApis">Relative Path API</option>
+                                <option value="jsFiles">JS Files</option>
+                                <option value="cssFiles">CSS Files</option>
+                                <option value="images">Image Files</option>
+                                <option value="urls">Full URL</option>
+                                <option value="domains">Domains</option>
+                                <option value="paths">Path</option>
+                            </select>
+                        </div>
+                        <div class="test-controls" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                            <label style="display: flex; align-items: center;">Base API Path:</label>
+                            <textarea id="baseApiPath" placeholder="Enter Base API paths, one per line&#10;e.g.&#10;prod-api/v1/common&#10;prod-api/v1/base&#10;prod-api/v1/sys" style="width: 100%; padding: 10px; border-radius: 6px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid #444; font-size: 12px; min-height: 80px; max-height: 120px; resize: vertical; font-family: monospace; line-height: 1.4;"></textarea>
+                        </div>
+                        <div class="test-controls">
+                            <label style="display: flex; align-items: center;">Concurrency:</label>
+                            <input type="number" id="apiConcurrency" value="8" min="1" max="100" style="flex: 1; padding: 8px; border-radius: 6px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid #444; font-size: 12px; -moz-appearance: textfield; appearance: textfield;">
+                            <label style="display: flex; align-items: center;">Timeout:</label>
+                            <input type="number" id="apiTimeout" value="5" min="1" max="300" style="flex: 1; padding: 8px; border-radius: 6px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid #444; font-size: 12px; -moz-appearance: textfield; appearance: textfield;">
+                            <span style="font-size: 12px; color: #ccc; display: flex; align-items: center;">s</span>
+                        </div>
+                        <div class="test-controls" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                            <label style="display: flex; align-items: center;">Custom Domains/IP:</label>
+                            <textarea id="customDomains" placeholder="Enter custom domains or IP addresses, one per line&#10;e.g.&#10;192.168.1.100:8080&#10;192.168.1.1&#10;test.domain.com" style="width: 100%; padding: 10px; border-radius: 6px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid #444; font-size: 12px; min-height: 80px; max-height: 120px; resize: vertical; font-family: monospace; line-height: 1.4;"></textarea>
+                        </div>
+
+                        <div class="test-controls" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <label style="display: flex; align-items: center;">Custom API Paths:</label>
+                                <button id="addCustomApiBtn" class="action-button" style="padding: 6px 12px; font-size: 12px; min-width: 50px; height: fit-content; width: auto; margin: 0;">
+                                    <span class="text">Add</span>
+                                </button>
+                            </div>
+                            <textarea id="customApiPaths" placeholder="Enter custom API paths, one per line" style="width: 100%; padding: 10px; border-radius: 6px; background: rgba(0, 0, 0, 0.5); color: #fff; border: 1px solid #444; font-size: 12px; min-height: 60px; max-height: 120px; resize: vertical; font-family: monospace; line-height: 1.4;"></textarea>
+                        </div>
+                        <button id="batchRequestBtn" class="action-button">
+                            <span class="text">Run Batch Test</span>
+                            <span class="shine"></span>
+                            <span class="border-tl"></span>
+                            <span class="border-tr"></span>
+                            <span class="border-bl"></span>
+                            <span class="border-br"></span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="page" id="settings-page">
+
+                    <div class="api-test-section">
+                        <div class="config-title"> Domain Scan Settings</div>
+                        <div class="config-options" style="flex-direction: column; gap: 12px; align-items: flex-start;">
+                            <label class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span> Allow scanning subdomains</span>
+                                    <small>(e.g. api.example.com, cdn.example.com)</small>
+                                </span>
+                                <input type="checkbox" id="allowSubdomains" style="margin-left: auto;">
+                            </label>
+                            <label class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span> Allow scanning all domains</span>
+                                    <small>(including completely different domains)</small>
+                                </span>
+                                <input type="checkbox" id="allowAllDomains" style="margin-left: auto;">
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="api-test-section">
+                        <div class="config-title">Third-party Library Blocking</div>
+                        <div class="config-options" style="flex-direction: column; gap: 12px; align-items: flex-start;">
+                            <label class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Block third-party JS libraries</span>
+                                    <small>(jQuery/Vue/React etc. are not fetched or parsed)</small>
+                                </span>
+                                <input type="checkbox" id="skipVendorJs" checked style="margin-left: auto;">
+                            </label>
+                            <div class="config-option" style="width: 100%; flex-direction: column; align-items: flex-start; gap: 6px;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Custom block rules</span>
+                                    <small>(One per line; regex or filename fragment)</small>
+                                </span>
+                                <textarea id="customVendorPatterns" placeholder="e.g. sentry or ^common[.-]" style="width: 100%; min-height: 70px; padding: 8px; background: rgba(0,0,0,0.5); border: 1px solid #444; border-radius: 4px; color: #fff; font-size: 12px; resize: vertical;"></textarea>
+                            </div>
+                        </div>
+                        <div class="headers-actions" style="margin-top: 10px;">
+                            <button id="saveVendorJsSettingsBtn" class="action-button">
+                                <span class="text">Save Block Settings</span>
+                                <span class="shine"></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="api-test-section">
+                        <div class="config-title">Vue Detection Settings</div>
+                        <div class="config-options" style="flex-direction: column; gap: 12px; align-items: flex-start;">
+                            <label class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Enable Vue detection</span>
+                                    <small>(Automatically detect the Vue framework and routes)</small>
+                                </span>
+                                <input type="checkbox" id="vueDetectionEnabled" checked style="margin-left: auto;">
+                            </label>
+                            <label class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Clear route guards</span>
+                                    <small>(Bypass beforeEach and other navigation guards)</small>
+                                </span>
+                                <input type="checkbox" id="vueGuardPatch" checked style="margin-left: auto;">
+                            </label>
+                            <label class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Modify auth fields</span>
+                                    <small>(Set meta.auth and similar fields to false)</small>
+                                </span>
+                                <input type="checkbox" id="vueAuthPatch" checked style="margin-left: auto;">
+                            </label>
+                            <div class="config-option" style="width: 100%; justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <span>Detection timeout</span>
+                                    <small>(ms)</small>
+                                </span>
+                                <input type="number" id="vueDetectionTimeout" value="3000" min="1000" max="10000" step="500" style="width: 80px; padding: 4px 8px; background: rgba(0, 0, 0, 0.5); border: 1px solid #444; border-radius: 4px; color: #fff; font-size: 12px;">
+                            </div>
+                        </div>
+                        <div class="headers-actions" style="margin-top: 10px;">
+                            <button id="saveVueSettingsBtn" class="action-button">
+                                <span class="text">Save Vue Settings</span>
+                                <span class="shine"></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="api-test-section">
+                        <div class="config-title">Request Header Settings</div>
+                        <div class="headers-controls">
+                            <div id="headersContainer">
+
+                            </div>
+                            <div class="headers-actions">
+                                <button id="addHeaderBtn" class="action-button">
+                                    <span class="text">Add Header</span>
+                                    <span class="shine"></span>
+                                    <span class="border-tl"></span>
+                                    <span class="border-tr"></span>
+                                    <span class="border-bl"></span>
+                                    <span class="border-br"></span>
+                                </button>
+                                <button id="getCookieBtn" class="action-button">
+                                    <span class="text">Get Cookie</span>
+                                    <span class="shine"></span>
+                                    <span class="border-tl"></span>
+                                    <span class="border-tr"></span>
+                                    <span class="border-bl"></span>
+                                    <span class="border-br"></span>
+                                </button>
+                            </div>
+                            <div class="headers-actions">
+                                <button id="saveHeadersBtn" class="action-button">
+                                    <span class="text">Save Headers</span>
+                                    <span class="shine"></span>
+                                    <span class="border-tl"></span>
+                                    <span class="border-tr"></span>
+                                    <span class="border-bl"></span>
+                                    <span class="border-br"></span>
+                                </button>
+                                <button id="clearHeadersBtn" class="action-button">
+                                    <span class="text">Clear Headers</span>
+                                    <span class="shine"></span>
+                                    <span class="border-tl"></span>
+                                    <span class="border-tr"></span>
+                                    <span class="border-bl"></span>
+                                    <span class="border-br"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button id="addCustomRegexBtn" class="action-button">
+                        <span class="text">Add Custom Regex</span>
+                        <span class="shine"></span>
+                        <span class="border-tl"></span>
+                        <span class="border-tr"></span>
+                        <span class="border-bl"></span>
+                        <span class="border-br"></span>
+                    </button>
+
+
+                    <div class="api-test-section">
+                        <div class="config-title">Regular Expression Configuration</div>
+                        <div class="regex-config">
+                            <div class="regex-item">
+                                <label>Absolute-path API regex:</label>
+                                <textarea id="absoluteApiRegex" rows="2" placeholder="Regex used to match absolute-path APIs, e.g./api/user/info"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Relative-path API regex:</label>
+                                <textarea id="relativeApiRegex" rows="2" placeholder="Regex used to match relative-path APIs, e.g../api/data.json"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Domain regex:</label>
+                                <textarea id="domainRegex" rows="2" placeholder="Regex used to match domains"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Email regex:</label>
+                                <textarea id="emailRegex" rows="2" placeholder="Regex used to match email addresses"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Phone regex:</label>
+                                <textarea id="phoneRegex" rows="2" placeholder="Regex used to match phone numbers"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Sensitive info regex:</label>
+                                <textarea id="sensitiveRegex" rows="2" placeholder="Regex used to match sensitive information"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>IP address regex:</label>
+                                <textarea id="ipRegex" rows="2" placeholder="Regex used to match IP addresses"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>JWT token regex:</label>
+                                <textarea id="jwtRegex" rows="2" placeholder="Regex used to match JWT tokens"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>GitHub link regex:</label>
+                                <textarea id="githubRegex" rows="2" placeholder="Regex used to match GitHub links"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Vue file regex:</label>
+                                <textarea id="vueRegex" rows="2" placeholder="Regex used to match Vue files"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Company name regex:</label>
+                                <textarea id="companyRegex" rows="2" placeholder="Regex used to match company names"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>ID card number regex:</label>
+                                <textarea id="idCardRegex" rows="2" placeholder="Regex used to match ID card numbers"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Bearer Token Regex:</label>
+                                <textarea id="bearerTokenRegex" rows="2" placeholder="Regex used to match Bearer Tokens"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Basic Auth Regex:</label>
+                                <textarea id="basicAuthRegex" rows="2" placeholder="Regex used to match Basic Auth"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Authorization Header Regex:</label>
+                                <textarea id="authHeaderRegex" rows="2" placeholder="Regex used to match Authorization headers"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>WeChat AppID regex:</label>
+                                <textarea id="wechatAppIdRegex" rows="2" placeholder="Regex used to match WeChat AppIDs"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>AWS key regex:</label>
+                                <textarea id="awsKeyRegex" rows="2" placeholder="Regex used to match AWS keys"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Google API Key Regex:</label>
+                                <textarea id="googleApiKeyRegex" rows="2" placeholder="Regex used to match Google API Keys"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>GitHub Token Regex:</label>
+                                <textarea id="githubTokenRegex" rows="2" placeholder="Regex used to match GitHub Tokens"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>GitLab Token Regex:</label>
+                                <textarea id="gitlabTokenRegex" rows="2" placeholder="Regex used to match GitLab Tokens"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Webhook URLs Regex:</label>
+                                <textarea id="webhookUrlsRegex" rows="2" placeholder="Regex used to match Webhook URLs"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Crypto algorithm call regex:</label>
+                                <textarea id="cryptoUsageRegex" rows="2" placeholder="Regex used to detect crypto algorithm calls"></textarea>
+                            </div>
+                            <div class="regex-item">
+                                <label>Comment regex:</label>
+                                <textarea id="commentRegex" rows="2" placeholder="Regex used to match code comments"></textarea>
+                            </div>
+                        </div>
+                        <div class="regex-actions">
+                            <button id="saveRegexBtn" class="action-button">
+                                <span class="text">Save Configuration</span>
+                                <span class="shine"></span>
+                                <span class="border-tl"></span>
+                                <span class="border-tr"></span>
+                                <span class="border-bl"></span>
+                                <span class="border-br"></span>
+                            </button>
+                            <button id="resetRegexBtn" class="action-button">
+                                <span class="text">Restore Defaults</span>
+                                <span class="shine"></span>
+                                <span class="border-tl"></span>
+                                <span class="border-tr"></span>
+                                <span class="border-bl"></span>
+                                <span class="border-br"></span>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="page" id="about-page">
+                    <div class="api-test-section">
+                        <div class="config-title">Tool Info</div>
+                        <div style="color: #ccc; line-height: 1.6; font-size: 13px;">
+                            <p><strong>Name:</strong> Spectre</p>
+                            <p><strong>Version:</strong> 1.8.1</p>
+                            <p><strong>Publisher:</strong> Arena Web Security</p>
+                            <p><strong>Purpose:</strong> Web vulnerability hunting and reconnaissance, built for teaching students to discover security flaws</p>
+                            <p><strong>Based on:</strong> the open-source Phantom project (Apache-2.0)</p>
+                            <p><strong>Repository:</strong> https://github.com/Team-intN18-SoybeanSeclab/Phantom</p>
+                            <br>
+                            <p><strong>Key Features:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Automatically scan pages for sensitive information</li>
+                                <li>Deep recursive scanning across multiple file layers</li>
+                                <li>Batch API endpoint testing</li>
+                                <li>Smart categorized result display</li>
+                                <li>jsHook Script injection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats" id="stats"></div>
+        </div>
+    </div>
+    <div id="requestResultModal" class="modal">
+        <div class="modal-content">
+            <button id="closeModalBtn" class="modal-close">×</button>
+            <h3>Batch Request Results</h3>
+            <div id="requestResults"></div>
+            <div style="margin-top: 15px; text-align: right;">
+                <button id="copyAllResultsBtn" class="action-button" style="width: auto; margin: 0;">
+                    <span class="text">Copy All Results</span>
+                    <span class="shine"></span>
+                    <span class="border-tl"></span>
+                    <span class="border-tr"></span>
+                    <span class="border-bl"></span>
+                    <span class="border-br"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="exportModal" class="modal" style="display: none;">
+        <div class="modal-content export-modal-content">
+            <button id="closeExportModal" class="modal-close">×</button>
+            <h3>Select Export Format</h3>
+            <div class="export-modal-body">
+                <p>Choose the export file format:</p>
+                <div class="export-buttons">
+                    <button class="action-button export-option" id="exportJSON">
+                        <span class="text">
+                            <strong>JSON Format</strong>
+                            <br><small>Includes full test info and result data</small>
+                        </span>
+                        <span class="shine"></span>
+                        <span class="border-tl"></span>
+                        <span class="border-tr"></span>
+                        <span class="border-bl"></span>
+                        <span class="border-br"></span>
+                    </button>
+                    <button class="action-button export-option export-csv" id="exportCSV">
+                        <span class="text">
+                            <strong>XLS Format</strong>
+                            <br><small>Excel workbook, one sheet per category</small>
+                        </span>
+                        <span class="shine"></span>
+                        <span class="border-tl"></span>
+                        <span class="border-tr"></span>
+                        <span class="border-bl"></span>
+                        <span class="border-br"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="customRegexModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <button id="closeCustomRegexModal" class="modal-close">×</button>
+            <h3 style="color: #00d4aa; margin-bottom: 20px; text-align: center;">Add Custom Regex Config</h3>
+            <div class="custom-regex-form">
+                <div class="regex-item">
+                    <label>Display Name:</label>
+                    <input type="text" id="customRegexName" placeholder="Enter a friendly name for the extracted content, e.g. Custom API" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.5); border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 12px;">
+                </div>
+                <div class="regex-item">
+                    <label>Storage Key:</label>
+                    <input type="text" id="customRegexKey" placeholder="Enter the key name stored in chrome.storage, e.g. customApi" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.5); border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 12px;">
+                </div>
+                <div class="regex-item">
+                    <label>Regular Expression:</label>
+                    <textarea id="customRegexPattern" rows="3" placeholder="Enter the regular expression, e.g./api/[a-zA-Z0-9/]+\\.json" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.5); border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 12px; resize: vertical; font-family: monospace;"></textarea>
+                </div>
+                <div class="custom-regex-actions" style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button id="confirmCustomRegexBtn" class="action-button" style="flex: 1;">
+                        <span class="text">Confirm</span>
+                        <span class="shine"></span>
+                        <span class="border-tl"></span>
+                        <span class="border-tr"></span>
+                        <span class="border-bl"></span>
+                        <span class="border-br"></span>
+                    </button>
+                    <button id="cancelCustomRegexBtn" class="action-button" style="flex: 1; background: rgba(231, 76, 60, 0.3); border-color: rgba(231, 76, 60, 0.5);">
+                        <span class="text">Cancel</span>
+                        <span class="shine"></span>
+                        <span class="border-tl"></span>
+                        <span class="border-tr"></span>
+                        <span class="border-bl"></span>
+                        <span class="border-br"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="addScriptModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Script</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="scriptNameInput">Script name:</label>
+                    <input type="text" id="scriptNameInput" placeholder="Enter a script name..." style="width: 100%; padding: 8px; border-radius: 4px; background: rgba(0, 0, 0, 0.7); color: #fff; border: 1px solid #444; font-size: 12px;">
+                </div>
+                <div class="form-group">
+                    <label for="scriptDescInput">Script Description (optional):</label>
+                    <textarea id="scriptDescInput" placeholder="Enter a script description..." style="width: 100%; padding: 8px; border-radius: 4px; background: rgba(0, 0, 0, 0.7); color: #fff; border: 1px solid #444; font-size: 12px; min-height: 32px; max-height: 150px; resize: vertical; transition: min-height 0.3s ease;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="scriptCodeInput">JavaScript Code:</label>
+                    <textarea id="scriptCodeInput" placeholder="Enter JavaScript code...&#10;&#10;Example:&#10;console.log('Hello from script!');&#10;document.title = 'Modified by Spectre';" style="width: 100%; padding: 12px; border-radius: 6px; background: rgba(0, 0, 0, 0.7); color: #fff; border: 1px solid #444; font-size: 12px; min-height: 200px; max-height: 300px; resize: vertical; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; line-height: 1.4; tab-size: 2;"></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="saveScriptBtn" class="action-button" style="flex: 1;">
+                    <span class="text">Save Script</span>
+                    <span class="shine"></span>
+                    <span class="border-tl"></span>
+                    <span class="border-tr"></span>
+                    <span class="border-bl"></span>
+                    <span class="border-br"></span>
+                </button>
+                <button id="cancelAddScriptBtn" class="action-button" style="flex: 1; background: rgba(231, 76, 60, 0.3); border-color: rgba(231, 76, 60, 0.5);">
+                    <span class="text">Cancel</span>
+                    <span class="shine"></span>
+                    <span class="border-tl"></span>
+                    <span class="border-tr"></span>
+                    <span class="border-bl"></span>
+                    <span class="border-br"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="scriptDetailModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 id="scriptDetailTitle">Script Details</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Script name:</label>
+                    <div id="scriptDetailName" style="padding: 8px; background: rgba(0, 0, 0, 0.3); border-radius: 4px; color: #fff; font-size: 14px; margin-top: 5px;"></div>
+                </div>
+                <div class="form-group">
+                    <label>Script Description:</label>
+                    <div id="scriptDetailDesc" style="padding: 12px; background: rgba(0, 0, 0, 0.3); border-radius: 4px; color: #fff; font-size: 12px; margin-top: 5px; max-height: 200px; overflow-y: auto; white-space: pre-wrap; line-height: 1.4; user-select: text; cursor: text;"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="copyDescBtn" class="action-button" style="flex: 1;">
+                    <span class="text">Copy Description</span>
+                    <span class="shine"></span>
+                    <span class="border-tl"></span>
+                    <span class="border-tr"></span>
+                    <span class="border-bl"></span>
+                    <span class="border-br"></span>
+                </button>
+                <button id="closeDetailBtn" class="action-button" style="flex: 1; background: rgba(108, 117, 125, 0.3); border-color: rgba(108, 117, 125, 0.5);">
+                    <span class="text">Close</span>
+                    <span class="shine"></span>
+                    <span class="border-tl"></span>
+                    <span class="border-tr"></span>
+                    <span class="border-bl"></span>
+                    <span class="border-br"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="src/core/IndexedDBManager.js"></script>
+    <script src="src/scanner/PatternExtractor.js"></script>
+    <script src="src/scanner/ContentExtractor.js"></script>
+    <script src="src/scanner/BasicScanner.js"></script>
+    <script src="src/scanner/DeepScanner.js"></script>
+    <script src="src/ui/DisplayManager.js"></script>
+    <script src="src/api/TestWindow.js"></script>
+    <script src="src/api/ApiTester.js"></script>
+    <script src="src/utils/ExportManager.js"></script>
+    <script src="src/utils/SettingsManager.js"></script>
+    <script src="src/core/jshook.js"></script>
+    <script src="src/core/JSInjector.js"></script>
+
+
+    <script src="libs/acorn.min.js"></script>
+    <script src="src/scanner/ast/parser.js"></script>
+    <script src="src/scanner/ast/utils/hash.js"></script>
+    <script src="src/scanner/ast/utils/context.js"></script>
+    <script src="src/scanner/ast/visitors/ASTVisitor.js"></script>
+    <script src="src/scanner/ast/visitors/CredentialVisitor.js"></script>
+    <script src="src/scanner/ast/visitors/APIEndpointVisitor.js"></script>
+    <script src="src/scanner/ast/visitors/SensitiveFunctionVisitor.js"></script>
+    <script src="src/scanner/ast/visitors/ConfigObjectVisitor.js"></script>
+    <script src="src/scanner/ast/visitors/EncodedStringVisitor.js"></script>
+    <script src="src/scanner/ast/ASTExtractor.js"></script>
+    <script src="src/scanner/ast/utils/ResultMerger.js"></script>
+    <script src="src/scanner/ast/ASTBridge.js"></script>
+    <script src="src/scanner/ast/index.js"></script>
+
+    <script src="src/main.js"></script>
+</body>
+</html>
+
