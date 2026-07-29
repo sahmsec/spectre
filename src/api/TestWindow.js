@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
             border-radius: 15px;
             padding: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(45, 35, 85, 0.34);
         }
 
         .header {
@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
             justify-content: space-around;
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(45, 35, 85, 0.24);
             border-radius: 10px;
         }
 
@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         .btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 10px rgba(45, 35, 85, 0.34);
         }
 
         .btn:disabled {
@@ -710,7 +710,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .results-container {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(45, 35, 85, 0.24);
             border-radius: 10px;
             overflow: hidden;
             max-height: 500px;
@@ -793,7 +793,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
             padding: 6px 10px;
             border: 1px solid rgba(167, 139, 250, 0.40);
             border-radius: 4px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(45, 35, 85, 0.24);
             color: white;
             font-size: 11px;
         }
