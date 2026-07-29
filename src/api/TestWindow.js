@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(130% 95% at 80% -10%, rgba(139, 92, 246, 0.40), transparent 62%), linear-gradient(158deg, #241c4d 0%, #2c2360 55%, #352c6e 100%);
+            background: radial-gradient(130% 95% at 80% -10%, rgba(139, 92, 246, 0.26), transparent 62%), linear-gradient(158deg, #17123a 0%, #1c1745 55%, #221c52 100%);
             color: #fff;
             min-height: 100vh;
             padding: 20px;
@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
             border-radius: 15px;
             padding: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(45, 35, 85, 0.34);
+            box-shadow: 0 8px 32px rgba(30, 23, 62, 0.38);
         }
 
         .header {
@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
             justify-content: space-around;
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(45, 35, 85, 0.24);
+            background: rgba(30, 23, 62, 0.28);
             border-radius: 10px;
         }
 
@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         .btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(45, 35, 85, 0.34);
+            box-shadow: 0 3px 10px rgba(30, 23, 62, 0.38);
         }
 
         .btn:disabled {
@@ -710,7 +710,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
         }
 
         .results-container {
-            background: rgba(45, 35, 85, 0.24);
+            background: rgba(30, 23, 62, 0.28);
             border-radius: 10px;
             overflow: hidden;
             max-height: 500px;
@@ -793,7 +793,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
             padding: 6px 10px;
             border: 1px solid rgba(167, 139, 250, 0.40);
             border-radius: 4px;
-            background: rgba(45, 35, 85, 0.24);
+            background: rgba(30, 23, 62, 0.28);
             color: white;
             font-size: 11px;
         }
@@ -806,7 +806,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 .modal-header{border-bottom:1px solid #e4dcf7 !important;}
 .results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
 .results-table{background:#ffffff !important;color:#2a2547 !important;}
-.results-table th{background:#f1ecfb !important;color:#1e1b3a !important;border-bottom:1px solid #c9bcf0 !important;}
+.results-table th{background:#f1ecfb !important;color:#17123a !important;border-bottom:1px solid #c9bcf0 !important;}
 .results-table th:hover{background:#e9e1fb !important;}
 .results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
 .results-table tr:hover{background:#f6f2fe !important;}

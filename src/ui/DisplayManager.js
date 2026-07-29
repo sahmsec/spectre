@@ -423,7 +423,7 @@ class DisplayManager {
             modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
 
             const modalContent = document.createElement('div');
-            modalContent.style.backgroundColor = 'rgb(23, 22, 46)';
+            modalContent.style.backgroundColor = '#1a1540';
             modalContent.style.margin = '15% auto';
             modalContent.style.padding = '20px';
             modalContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
@@ -780,7 +780,7 @@ class DisplayManager {
             modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
 
             const modalContent = document.createElement('div');
-            modalContent.style.backgroundColor = 'rgb(23, 22, 46)';
+            modalContent.style.backgroundColor = '#1a1540';
             modalContent.style.margin = '5% auto';
             modalContent.style.padding = '20px';
             modalContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
