@@ -195,7 +195,7 @@ class DisplayManager {
 
         if (totalCount === 0) {
             resultsDiv.innerHTML = `
-                <div style="padding: 20px; text-align: center; color: #8b5cf6;">
+                <div style="padding: 20px; text-align: center; color: #6d28d9;">
                     <h3>Scan complete</h3>
                     <p>No extractable information found on the current page</p>
                     <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">
@@ -217,7 +217,7 @@ class DisplayManager {
 
 
         const realtimeIndicator = this.srcMiner.deepScanRunning ?
-            '<span style="color: #8b5cf6; animation: pulse 1s infinite;">●</span> Live updating' : '';
+            '<span style="color: #6d28d9; animation: pulse 1s infinite;">●</span> Live updating' : '';
 
         document.getElementById('stats').innerHTML = `
             <div>Found <strong>${totalCount}</strong> items ${realtimeIndicator}</div>
@@ -426,7 +426,7 @@ class DisplayManager {
             modalContent.style.backgroundColor = '#1a1540';
             modalContent.style.margin = '15% auto';
             modalContent.style.padding = '20px';
-            modalContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
+            modalContent.style.border = '1px solid rgba(109, 76, 184, 0.15)';
             modalContent.style.width = '80%';
             modalContent.style.maxWidth = '600px';
             modalContent.style.borderRadius = '10px';
@@ -441,7 +441,7 @@ class DisplayManager {
 
             const modalTitle = document.createElement('h3');
             modalTitle.style.margin = '0';
-            modalTitle.style.color = '#8b5cf6';
+            modalTitle.style.color = '#6d28d9';
             modalTitle.style.fontSize = '18px';
             modalTitle.style.fontWeight = '600';
 
@@ -462,7 +462,7 @@ class DisplayManager {
             closeBtn.style.borderRadius = '50%';
 
             closeBtn.onmouseover = () => {
-                closeBtn.style.backgroundColor = 'rgba(167, 139, 250, 0.15)';
+                closeBtn.style.backgroundColor = 'rgba(109, 76, 184, 0.15)';
                 closeBtn.style.color = '#fff';
             };
 
@@ -499,7 +499,7 @@ class DisplayManager {
         list.style.maxHeight = '400px';
         list.style.overflowY = 'auto';
         list.style.padding = '10px';
-        list.style.border = '1px solid rgba(167, 139, 250, 0.15)';
+        list.style.border = '1px solid rgba(109, 76, 184, 0.15)';
         list.style.borderRadius = '8px';
         list.style.marginTop = '10px';
         list.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
@@ -524,7 +524,7 @@ class DisplayManager {
 
             itemDiv.style.padding = '8px 10px';
             itemDiv.style.margin = '3px 0';
-            itemDiv.style.borderBottom = '1px solid rgba(167, 139, 250, 0.08)';
+            itemDiv.style.borderBottom = '1px solid rgba(109, 76, 184, 0.08)';
             itemDiv.style.wordBreak = 'break-all';
             itemDiv.style.transition = 'all 0.3s';
             itemDiv.style.borderRadius = '4px';
@@ -534,7 +534,7 @@ class DisplayManager {
             let tooltip = null;
 
             itemDiv.onmouseover = async (e) => {
-                itemDiv.style.backgroundColor = 'rgba(167, 139, 250, 0.15)';
+                itemDiv.style.backgroundColor = 'rgba(109, 76, 184, 0.15)';
                 itemDiv.style.transform = 'translateX(3px)';
 
 
@@ -549,7 +549,7 @@ class DisplayManager {
                     tooltip.style.zIndex = '10000';
                     tooltip.style.maxWidth = '300px';
                     tooltip.style.wordWrap = 'break-word';
-                    tooltip.style.border = '1px solid rgba(167, 139, 250, 0.28)';
+                    tooltip.style.border = '1px solid rgba(109, 76, 184, 0.28)';
                     tooltip.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
                     tooltip.style.pointerEvents = 'none';
                     document.body.appendChild(tooltip);
@@ -559,7 +559,7 @@ class DisplayManager {
                 try {
                     const locationInfo = await this.getItemLocationInfo(item);
                     tooltip.innerHTML = `
-                        <div style="font-weight: bold; color: #8b5cf6; margin-bottom: 4px;">Source info</div>
+                        <div style="font-weight: bold; color: #6d28d9; margin-bottom: 4px;">Source info</div>
                         <div><strong>Page:</strong> ${locationInfo.pageTitle}</div>
                         <div><strong>URL:</strong> ${locationInfo.sourceUrl}</div>
                         <div><strong>Time:</strong> ${new Date(locationInfo.extractedAt).toLocaleString('en-US')}</div>
@@ -783,7 +783,7 @@ class DisplayManager {
             modalContent.style.backgroundColor = '#1a1540';
             modalContent.style.margin = '5% auto';
             modalContent.style.padding = '20px';
-            modalContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
+            modalContent.style.border = '1px solid rgba(109, 76, 184, 0.15)';
             modalContent.style.width = '90%';
             modalContent.style.maxWidth = '800px';
             modalContent.style.borderRadius = '10px';
@@ -801,7 +801,7 @@ class DisplayManager {
             const modalTitle = document.createElement('h3');
             modalTitle.textContent = 'API Test Results';
             modalTitle.style.margin = '0';
-            modalTitle.style.color = '#8b5cf6';
+            modalTitle.style.color = '#6d28d9';
             modalTitle.style.fontSize = '18px';
             modalTitle.style.fontWeight = '600';
 
@@ -821,7 +821,7 @@ class DisplayManager {
             closeBtn.style.borderRadius = '50%';
 
             closeBtn.onmouseover = () => {
-                closeBtn.style.backgroundColor = 'rgba(167, 139, 250, 0.15)';
+                closeBtn.style.backgroundColor = 'rgba(109, 76, 184, 0.15)';
                 closeBtn.style.color = '#fff';
             };
 
@@ -853,23 +853,23 @@ class DisplayManager {
         const summary = document.createElement('div');
         summary.style.marginBottom = '20px';
         summary.style.padding = '15px';
-        summary.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+        summary.style.backgroundColor = 'rgba(91, 33, 182, 0.1)';
         summary.style.borderRadius = '8px';
-        summary.style.border = '1px solid rgba(139, 92, 246, 0.2)';
+        summary.style.border = '1px solid rgba(91, 33, 182, 0.2)';
         summary.style.transition = 'all 0.3s';
 
         const successCount = results.filter(r => r.success).length;
         const failCount = results.length - successCount;
 
         summary.innerHTML = `
-            <div style="font-weight: bold; margin-bottom: 8px; color: #8b5cf6;">Test Summary:</div>
+            <div style="font-weight: bold; margin-bottom: 8px; color: #6d28d9;">Test Summary:</div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <span>Total:</span>
                 <span style="font-weight: 600;">${results.length} APIs</span>
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                 <span>Success:</span>
-                <span style="color: #8b5cf6; font-weight: 600;">${successCount}</span>
+                <span style="color: #6d28d9; font-weight: 600;">${successCount}</span>
             </div>
             <div style="display: flex; justify-content: space-between;">
                 <span>Failed:</span>
@@ -878,13 +878,13 @@ class DisplayManager {
         `;
 
         summary.onmouseover = () => {
-            summary.style.backgroundColor = 'rgba(139, 92, 246, 0.15)';
+            summary.style.backgroundColor = 'rgba(91, 33, 182, 0.15)';
             summary.style.transform = 'translateY(-2px)';
             summary.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
         };
 
         summary.onmouseout = () => {
-            summary.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+            summary.style.backgroundColor = 'rgba(91, 33, 182, 0.1)';
             summary.style.transform = 'translateY(0)';
             summary.style.boxShadow = 'none';
         };
@@ -898,12 +898,12 @@ class DisplayManager {
             const resultItem = document.createElement('div');
             resultItem.style.marginBottom = '15px';
             resultItem.style.padding = '12px';
-            resultItem.style.border = '1px solid ' + (result.success ? 'rgba(139, 92, 246, 0.3)' : 'rgba(244, 67, 54, 0.3)');
+            resultItem.style.border = '1px solid ' + (result.success ? 'rgba(91, 33, 182, 0.3)' : 'rgba(244, 67, 54, 0.3)');
             resultItem.style.borderRadius = '8px';
-            resultItem.style.backgroundColor = result.success ? 'rgba(139, 92, 246, 0.1)' : 'rgba(244, 67, 54, 0.1)';
+            resultItem.style.backgroundColor = result.success ? 'rgba(91, 33, 182, 0.1)' : 'rgba(244, 67, 54, 0.1)';
             resultItem.style.transition = 'all 0.3s';
 
-            const statusColor = result.success ? '#8b5cf6' : '#f44336';
+            const statusColor = result.success ? '#6d28d9' : '#f44336';
             const statusText = result.success ? 'Success' : 'Failed';
             const statusCode = result.status || 'N/A';
 
@@ -927,13 +927,13 @@ class DisplayManager {
             resultItem.onmouseover = () => {
                 resultItem.style.transform = 'translateY(-2px)';
                 resultItem.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
-                resultItem.style.borderColor = result.success ? 'rgba(139, 92, 246, 0.5)' : 'rgba(244, 67, 54, 0.5)';
+                resultItem.style.borderColor = result.success ? 'rgba(91, 33, 182, 0.5)' : 'rgba(244, 67, 54, 0.5)';
             };
 
             resultItem.onmouseout = () => {
                 resultItem.style.transform = 'translateY(0)';
                 resultItem.style.boxShadow = 'none';
-                resultItem.style.borderColor = result.success ? 'rgba(139, 92, 246, 0.3)' : 'rgba(244, 67, 54, 0.3)';
+                resultItem.style.borderColor = result.success ? 'rgba(91, 33, 182, 0.3)' : 'rgba(244, 67, 54, 0.3)';
             };
 
 
@@ -943,12 +943,12 @@ class DisplayManager {
 
                 const dataToggle = document.createElement('button');
                 dataToggle.textContent = 'Show response data';
-                dataToggle.style.background = 'rgba(139, 92, 246, 0.2)';
-                dataToggle.style.border = '1px solid #8b5cf6';
+                dataToggle.style.background = 'rgba(91, 33, 182, 0.2)';
+                dataToggle.style.border = '1px solid #6d28d9';
                 dataToggle.style.borderRadius = '6px';
                 dataToggle.style.padding = '5px 10px';
                 dataToggle.style.fontSize = '12px';
-                dataToggle.style.color = '#8b5cf6';
+                dataToggle.style.color = '#6d28d9';
                 dataToggle.style.cursor = 'pointer';
                 dataToggle.style.marginBottom = '8px';
                 dataToggle.style.transition = 'all 0.3s';
@@ -963,16 +963,16 @@ class DisplayManager {
                 dataContent.style.fontSize = '12px';
                 dataContent.style.whiteSpace = 'pre-wrap';
                 dataContent.style.wordBreak = 'break-all';
-                dataContent.style.border = '1px solid rgba(167, 139, 250, 0.15)';
+                dataContent.style.border = '1px solid rgba(109, 76, 184, 0.15)';
                 dataContent.style.transition = 'all 0.3s';
 
                 dataToggle.onmouseover = () => {
-                    dataToggle.style.background = 'rgba(139, 92, 246, 0.3)';
+                    dataToggle.style.background = 'rgba(91, 33, 182, 0.3)';
                     dataToggle.style.transform = 'translateY(-1px)';
                 };
 
                 dataToggle.onmouseout = () => {
-                    dataToggle.style.background = 'rgba(139, 92, 246, 0.2)';
+                    dataToggle.style.background = 'rgba(91, 33, 182, 0.2)';
                     dataToggle.style.transform = 'translateY(0)';
                 };
 
@@ -1036,7 +1036,7 @@ class DisplayManager {
 
         switch (type) {
             case 'success':
-                notification.style.backgroundColor = 'rgba(139, 92, 246, 0.9)';
+                notification.style.backgroundColor = 'rgba(91, 33, 182, 0.9)';
                 notification.style.color = 'white';
                 break;
             case 'error':
@@ -1048,7 +1048,7 @@ class DisplayManager {
                 notification.style.color = 'white';
                 break;
             default:
-                notification.style.backgroundColor = 'rgba(139, 92, 246, 0.9)';
+                notification.style.backgroundColor = 'rgba(91, 33, 182, 0.9)';
                 notification.style.color = 'white';
         }
 
@@ -1431,7 +1431,7 @@ class DisplayManager {
             word-wrap: break-word;
             z-index: 10000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(167, 139, 250, 0.28);
+            border: 1px solid rgba(109, 76, 184, 0.28);
         `;
 
         const formatDate = (dateStr) => {
@@ -1667,7 +1667,7 @@ class DisplayManager {
         const notification = document.createElement('div');
         notification.className = 'phantom-notification';
 
-        const bgColor = type === 'error' ? '#ff4757' : '#a78bfa';
+        const bgColor = type === 'error' ? '#ff4757' : '#7c5cc4';
 
         notification.style.cssText = `
             position: fixed;

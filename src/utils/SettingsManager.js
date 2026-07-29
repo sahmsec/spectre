@@ -1055,7 +1055,7 @@ class SettingsManager {
             font-size: 12px;
             z-index: 10000;
             animation: slideIn 0.3s ease;
-            background: ${type === 'success' ? '#8b5cf6' : type === 'error' ? '#e74c3c' : '#f39c12'};
+            background: ${type === 'success' ? '#6d28d9' : type === 'error' ? '#e74c3c' : '#f39c12'};
         `;
 
         document.body.appendChild(messageEl);
