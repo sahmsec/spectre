@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: radial-gradient(125% 90% at 82% -12%, rgba(139, 92, 246, 0.32), transparent 58%), linear-gradient(158deg, #1e1b3a 0%, #241f47 60%, #2a2450 100%);
             color: #fff;
             min-height: 100vh;
             padding: 20px;
