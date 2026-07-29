@@ -609,7 +609,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(130% 95% at 80% -10%, rgba(124, 58, 237, 0.15), transparent 60%), linear-gradient(158deg, #120e2e 0%, #17123a 55%, #1c1745 100%);
+            background: radial-gradient(130% 95% at 80% -10%, rgba(124, 58, 237, 0.11), transparent 58%), linear-gradient(158deg, #0a0719 0%, #0d0a22 55%, #110d2e 100%);
             color: #fff;
             min-height: 100vh;
             padding: 20px;
@@ -806,7 +806,7 @@ document.addEventListener('DOMContentLoaded', initializePage);
 .modal-header{border-bottom:1px solid #e4dcf7 !important;}
 .results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
 .results-table{background:#ffffff !important;color:#2a2547 !important;}
-.results-table th{background:#f1ecfb !important;color:#120e2e !important;border-bottom:1px solid #c9bcf0 !important;}
+.results-table th{background:#f1ecfb !important;color:#0a0719 !important;border-bottom:1px solid #c9bcf0 !important;}
 .results-table th:hover{background:#e9e1fb !important;}
 .results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
 .results-table tr:hover{background:#f6f2fe !important;}
