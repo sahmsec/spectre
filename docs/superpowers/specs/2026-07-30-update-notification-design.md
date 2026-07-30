@@ -10,7 +10,7 @@ auto-updates an unpacked extension, so a student who installed once stays on tha
 build forever. When we ship a fix, nobody finds out.
 
 An update check already exists in `src/main.js` and runs on every popup open, but it
-is inherited from the upstream Phantom project and is broken in two ways:
+is inherited from the codebase this was forked from and is broken in two ways:
 
 1. It fetches `https://www.cn-fnst.top/huanying/` — a third-party domain we do not
    control. It will never report a Spectre release.
