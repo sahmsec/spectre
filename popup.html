@@ -1578,8 +1578,10 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 /* Neither element renders unless an update is actually waiting: the pill is
    [hidden] in markup, and the modal is only ever appended by JS. With nothing
    pending the header is byte-for-byte what it was. */
+/* last child of the flex .brand-lockup row: margin-left:auto parks it hard right,
+   and the row's align-items:center keeps it level with the wordmark. */
 .update-pill{
-  align-self:flex-start;margin-top:3px;padding:2px 8px;
+  margin-left:auto;flex:none;padding:4px 10px;
   font-family:inherit;font-size:10px;font-weight:600;letter-spacing:.2px;
   color:#c9b8f0;background:rgba(109,76,184,.18);
   border:1px solid rgba(109,76,184,.45);border-radius:999px;
@@ -1637,8 +1639,8 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
                     <div class="brand-text">
                         <h1>Spectre</h1>
                         <div class="author-info">by Team Falcon</div>
-                        <button type="button" id="updatePill" class="update-pill" hidden></button>
                     </div>
+                    <button type="button" id="updatePill" class="update-pill" hidden></button>
                 </div>
                 <div id="currentDomain" class="current-domain"></div>
             </div>
