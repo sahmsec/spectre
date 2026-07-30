@@ -1,0 +1,8 @@
+{
+  "version": "1.8.1",
+  "notes": [
+    "In-app update notifications, so you find out when a new version ships",
+    "Interface fixes: focus ring, native control theming, category colour coding",
+    "Removed an update check that fetched from a third-party domain"
+  ]
+}

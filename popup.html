@@ -1573,6 +1573,51 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 /* decorative leftover: .ray and .line are display:none above; .dot has no rules at all */
 .dot{display:none !important;}
 
+
+/* ===== update notification ===== */
+/* Neither element renders unless an update is actually waiting: the pill is
+   [hidden] in markup, and the modal is only ever appended by JS. With nothing
+   pending the header is byte-for-byte what it was. */
+.update-pill{
+  align-self:flex-start;margin-top:3px;padding:2px 8px;
+  font-family:inherit;font-size:10px;font-weight:600;letter-spacing:.2px;
+  color:#c9b8f0;background:rgba(109,76,184,.18);
+  border:1px solid rgba(109,76,184,.45);border-radius:999px;
+  cursor:pointer;transition:background-color .18s ease,border-color .18s ease;}
+.update-pill:hover{background:rgba(109,76,184,.30);border-color:rgba(109,76,184,.65);}
+.update-pill[hidden]{display:none;}
+
+.update-overlay{
+  position:fixed;inset:0;z-index:99999;
+  background:rgba(5,3,16,.72);
+  display:flex;align-items:center;justify-content:center;padding:18px;}
+.update-box{
+  width:100%;max-width:380px;max-height:88vh;overflow-y:auto;
+  background:#0f0b26;border:1px solid rgba(109,76,184,.32);border-radius:12px;
+  padding:18px 18px 14px;color:#d9d4ee;
+  box-shadow:0 18px 40px rgba(5,3,16,.65);}
+.update-heading{
+  margin:0 0 10px;font-size:14px;font-weight:700;color:#9d84d8;line-height:1.35;}
+.update-notes{margin:0 0 12px;padding-left:18px;font-size:12px;line-height:1.55;}
+.update-notes li{margin-bottom:3px;}
+.update-lead{margin:0 0 8px;font-size:12px;color:#b3aad4;}
+.update-steps{margin:0;padding-left:18px;font-size:12px;line-height:1.6;}
+.update-steps li{margin-bottom:8px;}
+.update-cmd-row{display:flex;align-items:center;gap:6px;margin-top:5px;}
+.update-cmd{
+  flex:1;padding:5px 8px;font-family:'Consolas','Monaco','Courier New',monospace;
+  font-size:12px;color:#ece9f5;background:rgba(8,6,22,.88);
+  border:1px solid rgba(109,76,184,.26);border-radius:4px;}
+.update-cmd-inline{flex:none;display:inline-block;padding:1px 5px;font-size:11px;}
+.update-copy-btn,.update-close-btn{
+  font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;
+  padding:5px 12px;border-radius:6px;
+  color:#cbb6f5;background:rgba(109,76,184,.14);
+  border:1px solid rgba(109,76,184,.42);
+  transition:background-color .18s ease;}
+.update-copy-btn:hover,.update-close-btn:hover{background:rgba(109,76,184,.26);}
+.update-actions{display:flex;justify-content:flex-end;margin-top:14px;}
+
 </style>
 </head>
 <body>
@@ -1592,6 +1637,7 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
                     <div class="brand-text">
                         <h1>Spectre</h1>
                         <div class="author-info">by Team Falcon</div>
+                        <button type="button" id="updatePill" class="update-pill" hidden></button>
                     </div>
                 </div>
                 <div id="currentDomain" class="current-domain"></div>
@@ -2094,7 +2140,7 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
                         <div class="config-title">Tool Info</div>
                         <div style="color: #ccc; line-height: 1.6; font-size: 13px;">
                             <p><strong>Name:</strong> Spectre</p>
-                            <p><strong>Version:</strong> 1.8.1</p>
+                            <p><strong>Version:</strong> <span id="aboutVersion"></span></p>
                             <p><strong>Purpose:</strong> Web vulnerability hunting and reconnaissance, built for teaching students to discover security flaws</p>
                             <p><strong>Based on:</strong> the open-source Phantom project (Apache-2.0)</p>
                             <p><strong>Repository:</strong> https://github.com/sahmsec/spectre</p>

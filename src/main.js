@@ -1353,7 +1353,32 @@ class ILoveYouTranslucent7 {
     }
 }
 
-const CURRENT_VERSION = 'v1.8.1';
+/* ===========================================================================
+   Update notification
+
+   Spectre installs via `git clone` + Load unpacked, so Chrome never updates it
+   automatically. This tells the user a new version exists and gives them the
+   two commands that actually apply it. It cannot update anything itself: an
+   extension has no write access to its own directory.
+
+   The version we ship is read from manifest.json via getManifest(), which is
+   the single source of truth. The version available is read from version.json
+   at the repo root. Both must be bumped together when releasing -- see the
+   Releasing section in README.md.
+   =========================================================================== */
+
+const UPDATE_MANIFEST_URL =
+    'https://raw.githubusercontent.com/sahmsec/spectre/main/version.json';
+const UPDATE_REPO_URL = 'https://github.com/sahmsec/spectre';
+const UPDATE_CACHE_KEY = 'spectreUpdateCache';
+const UPDATE_MODAL_SEEN_KEY = 'spectreUpdateModalSeen';
+const UPDATE_CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
+
+// Anything not matching this is discarded rather than displayed or compared.
+const UPDATE_VERSION_RE = /^\d+(\.\d+){0,3}$/;
+
+const UPDATE_NOTES_MAX = 10;
+const UPDATE_NOTE_MAX_LEN = 200;
 
 function compareVersion(v1, v2) {
     const arr1 = v1.replace(/^v/, '').split('.').map(Number);
@@ -1367,47 +1392,204 @@ function compareVersion(v1, v2) {
     return 0;
 }
 
-function showUpdateModal(release) {
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;
-        background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;
-    `;
-    modal.innerHTML = `
-        <div style="background:#222;padding:30px 24px;border-radius:12px;max-width:350px;color:#fff;text-align:center;box-shadow:0 0 20px #000;">
-            <h2 style="color:#6d28d9;">Xuan8a1 notice: a new version is available:${release.tag_name}</h2>
-            <div style="margin:12px 0 18px 0;font-size:13px;">${release.name || ''}</div>
-            <div style="margin-bottom:12px;font-size:12px;color:#ccc;">${release.body || ''}</div>
-            <a href="${release.html_url}" target="_blank" style="display:inline-block;padding:8px 18px;background:#6d28d9;color:#222;border-radius:6px;text-decoration:none;font-weight:bold;">Download</a>
-            <br><button style="margin-top:18px;padding:6px 18px;background:#444;color:#fff;border:none;border-radius:6px;cursor:pointer;" id="closeUpdateModal">Close</button>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    modal.querySelector('#closeUpdateModal').onclick = () => modal.remove();
+function getInstalledVersion() {
+    try {
+        return chrome.runtime.getManifest().version;
+    } catch (e) {
+        return null;
+    }
+}
+
+function sanitiseNotes(raw) {
+    if (!Array.isArray(raw)) return [];
+    return raw
+        .filter(n => typeof n === 'string' && n.trim())
+        .slice(0, UPDATE_NOTES_MAX)
+        .map(n => n.trim().slice(0, UPDATE_NOTE_MAX_LEN));
+}
+
+/**
+ * Resolves to { installed, available, notes } when an update is waiting,
+ * or null otherwise. Never throws and never surfaces anything on failure --
+ * being offline must look identical to being up to date.
+ */
+async function getUpdateState() {
+    const installed = getInstalledVersion();
+    if (!installed) return null;
+
+    let cache = null;
+    try {
+        const stored = await chrome.storage.local.get(UPDATE_CACHE_KEY);
+        cache = stored && stored[UPDATE_CACHE_KEY];
+    } catch (e) {
+        cache = null;
+    }
+
+    const fresh = cache && cache.checkedAt &&
+        (Date.now() - cache.checkedAt) < UPDATE_CHECK_INTERVAL_MS;
+
+    let available = cache && cache.available;
+    let notes = (cache && cache.notes) || [];
+
+    if (!fresh) {
+        try {
+            // no-store so the browser cache can't hold a copy past our own window
+            const res = await fetch(UPDATE_MANIFEST_URL, { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                const remote = data && typeof data.version === 'string'
+                    ? data.version.trim() : '';
+                if (UPDATE_VERSION_RE.test(remote)) {
+                    available = remote;
+                    notes = sanitiseNotes(data.notes);
+                    await chrome.storage.local.set({
+                        [UPDATE_CACHE_KEY]: { available, notes, checkedAt: Date.now() }
+                    });
+                }
+            }
+        } catch (e) {
+            // offline, DNS failure, non-JSON body: fall through to whatever the
+            // cache held. The check is invisible when it cannot run.
+        }
+    }
+
+    if (!available || !UPDATE_VERSION_RE.test(available)) return null;
+    if (compareVersion(installed, available) >= 0) return null;
+
+    return { installed, available, notes };
+}
+
+function buildUpdateModal(state) {
+    const overlay = document.createElement('div');
+    overlay.id = 'spectreUpdateOverlay';
+    overlay.className = 'update-overlay';
+
+    const box = document.createElement('div');
+    box.className = 'update-box';
+
+    const heading = document.createElement('h3');
+    heading.className = 'update-heading';
+    heading.textContent =
+        `Update available — ${state.installed} → ${state.available}`;
+    box.appendChild(heading);
+
+    if (state.notes.length) {
+        const list = document.createElement('ul');
+        list.className = 'update-notes';
+        state.notes.forEach(note => {
+            const li = document.createElement('li');
+            li.textContent = note;   // textContent, never innerHTML
+            list.appendChild(li);
+        });
+        box.appendChild(list);
+    }
+
+    const lead = document.createElement('p');
+    lead.className = 'update-lead';
+    lead.textContent = 'Chrome cannot update an unpacked extension. Two steps:';
+    box.appendChild(lead);
+
+    const steps = document.createElement('ol');
+    steps.className = 'update-steps';
+
+    const step1 = document.createElement('li');
+    step1.appendChild(document.createTextNode('Run this in your Spectre folder:'));
+    const cmdRow = document.createElement('div');
+    cmdRow.className = 'update-cmd-row';
+    const cmd = document.createElement('code');
+    cmd.className = 'update-cmd';
+    cmd.textContent = 'git pull';
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'update-copy-btn';
+    copyBtn.textContent = 'Copy';
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText('git pull');
+            copyBtn.textContent = 'Copied';
+            setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+        } catch (e) {
+            copyBtn.textContent = 'Copy failed';
+        }
+    });
+    cmdRow.appendChild(cmd);
+    cmdRow.appendChild(copyBtn);
+    step1.appendChild(cmdRow);
+    steps.appendChild(step1);
+
+    const step2 = document.createElement('li');
+    // chrome:// cannot be navigated to from an extension page, so this is
+    // copyable text rather than a link that would look clickable and do nothing.
+    step2.appendChild(document.createTextNode('Open '));
+    const ext = document.createElement('code');
+    ext.className = 'update-cmd update-cmd-inline';
+    ext.textContent = 'chrome://extensions';
+    step2.appendChild(ext);
+    step2.appendChild(document.createTextNode(
+        ' and click the reload icon on the Spectre card.'));
+    steps.appendChild(step2);
+
+    box.appendChild(steps);
+
+    const footer = document.createElement('div');
+    footer.className = 'update-actions';
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'update-close-btn';
+    closeBtn.textContent = 'Close';
+    closeBtn.addEventListener('click', () => overlay.remove());
+    footer.appendChild(closeBtn);
+    box.appendChild(footer);
+
+    overlay.appendChild(box);
+    overlay.addEventListener('click', e => {
+        if (e.target === overlay) overlay.remove();
+    });
+
+    return overlay;
+}
+
+function showUpdateModal(state) {
+    const existing = document.getElementById('spectreUpdateOverlay');
+    if (existing) existing.remove();
+    document.body.appendChild(buildUpdateModal(state));
+}
+
+function showUpdatePill(state) {
+    const pill = document.getElementById('updatePill');
+    if (!pill) return;
+    pill.textContent = `${state.available} available`;
+    pill.title = `Installed ${state.installed}. Click for update instructions.`;
+    pill.hidden = false;
+    pill.addEventListener('click', () => showUpdateModal(state));
 }
 
 async function checkForUpdate() {
     try {
-        const lastShown = localStorage.getItem('phantom_update_last_shown');
-        const now = Date.now();
-        if (lastShown && now - Number(lastShown) < 24 * 60 * 60 * 1000) return;
+        const state = await getUpdateState();
+        if (!state) return;   // up to date, or the check could not run
 
-        const res = await fetch('https://www.cn-fnst.top/huanying/');
-        if (!res.ok) return;
-        const releases = await res.json();
-        if (!Array.isArray(releases) || releases.length === 0) return;
+        // The pill persists for as long as the update is outstanding.
+        showUpdatePill(state);
 
-        let maxRelease = releases[0];
-        for (const r of releases) {
-            if (compareVersion(maxRelease.tag_name, r.tag_name) < 0) {
-                maxRelease = r;
-            }
+        // The modal interrupts once per version, not once per day.
+        let seen = null;
+        try {
+            const stored = await chrome.storage.local.get(UPDATE_MODAL_SEEN_KEY);
+            seen = stored && stored[UPDATE_MODAL_SEEN_KEY];
+        } catch (e) {
+            seen = null;
         }
-        if (compareVersion(CURRENT_VERSION, maxRelease.tag_name) < 0) {
-            showUpdateModal(maxRelease);
-            localStorage.setItem('phantom_update_last_shown', now);
+
+        if (seen !== state.available) {
+            showUpdateModal(state);
+            try {
+                await chrome.storage.local.set({
+                    [UPDATE_MODAL_SEEN_KEY]: state.available
+                });
+            } catch (e) {}
         }
-    } catch (e) {}
+    } catch (e) {
+        // never let the update check break popup startup
+    }
 }
 
 
@@ -1457,5 +1639,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     window.srcMiner = new ILoveYouTranslucent7();
+
+    // About page reads the manifest rather than a hardcoded string, so the
+    // version can only ever be bumped in one place.
+    const aboutVersion = document.getElementById('aboutVersion');
+    if (aboutVersion) {
+        aboutVersion.textContent = getInstalledVersion() || 'unknown';
+    }
+
     checkForUpdate();
 });

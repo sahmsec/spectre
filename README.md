@@ -73,6 +73,20 @@ git clone https://github.com/sahmsec/spectre.git
 3. Click **Load unpacked** and select the project folder
 4. Click the **Spectre** icon in the toolbar to start
 
+### Staying up to date
+
+Because Spectre is loaded unpacked, **the browser will never update it for you.**
+When a new version ships, Spectre shows a badge in its header and, once per version,
+a panel with the two steps:
+
+```bash
+git pull          # in the folder you cloned into
+```
+
+Then open `chrome://extensions` and click the **reload** icon on the Spectre card.
+Both steps are needed — `git pull` changes the files on disk, and the reload makes
+the browser pick them up.
+
 ### Usage
 
 <details>
@@ -252,6 +266,29 @@ Lower the deep-scan concurrency, reduce the maximum depth, and turn off scan opt
 Contributions are welcome. Open an issue with clear reproduction steps for bugs, or a described use
 case for feature requests. For code: fork, branch (`git checkout -b feature/your-feature`), commit,
 push, and open a pull request.
+
+---
+
+## Releasing
+
+Users only find out an update exists if `version.json` says so, so it has to be bumped
+in the same commit as the change.
+
+1. Make the change.
+2. Bump `version` in **`manifest.json`** — this is the single source of truth for the
+   version Spectre reports and compares against.
+3. Bump `version` in **`version.json`** to match, and replace `notes` with 1–3 short
+   lines describing what changed.
+4. Update the version badge and changelog in this README.
+5. Commit and push to the default branch.
+
+Within 24 hours every user sees the badge on their next popup open, and the update
+panel once. Steps 2 and 3 must agree: the notification fires when `version.json` is
+ahead of a user's installed `manifest.json`.
+
+`version.json` is fetched from `raw.githubusercontent.com` on the default branch, so
+it must be pushed there to be visible — a version bump sitting on a side branch
+notifies nobody.
 
 ---
 
