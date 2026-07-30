@@ -89,8 +89,8 @@
         }
 
         .btn {
-          --color: #00A97F;
-          --color2: #212121;
+          --color: #cbb6f5;
+          --color2: #1a1438;
           padding: 8px 14px;
           background-color: transparent;
           border-radius: 10px;
@@ -377,20 +377,7 @@
             transform: translateY(-2px);
         }
     
-/* --- Spectre: white data surfaces + lavender accents --- */
-.modal-content{background:#ffffff !important;color:#241f45 !important;border:1px solid #d8cef2 !important;}
-.modal-content .modal-close,.modal-content .close,.modal-close{color:#6b6785 !important;}
-.modal h3,.modal-header h3,.modal-content h3{color:#6d3bd6 !important;}
-.modal-body,.modal-body p,.modal-body label{color:#2a2547 !important;}
-.modal-header{border-bottom:1px solid #e4dcf7 !important;}
-.results-container{background:#ffffff !important;border:1px solid #d8cef2 !important;border-radius:8px;}
-.results-table{background:#ffffff !important;color:#2a2547 !important;}
-.results-table th{background:#f1ecfb !important;color:#0a0719 !important;border-bottom:1px solid #c9bcf0 !important;}
-.results-table th:hover{background:#e9e1fb !important;}
-.results-table td{color:#2a2547 !important;border-bottom:1px solid #ece7f8 !important;}
-.results-table tr:hover{background:#f6f2fe !important;}
-.results-table .status-success,.results-table .success{color:#6d3bd6 !important;}
-.results-table .status-error,.results-table .error{color:#dc2626 !important;}
+/* white data surfaces removed: fully superseded by the dark data surfaces block below */
 .results-container::-webkit-scrollbar-thumb{background:rgba(109,76,184,0.55) !important;}
 /* differentiated action buttons: red-transparent Delete, violet Inject, lavender Edit */
 .delete-btn{background:rgba(239,68,68,0.12) !important;border:1px solid rgba(239,68,68,0.50) !important;color:#ef4444 !important;}
@@ -496,7 +483,7 @@ input[type="checkbox"]:hover{transform:scale(1.12);}
 .modal h3,.modal-header h3,.modal-content h3{color:#9d84d8 !important;}
 .modal-body,.modal-body p,.modal-body label{color:#d9d4ee !important;}
 .modal-header{border-bottom:1px solid rgba(109,76,184,.20) !important;}
-.results-container{background:rgba(14,10,36,.60) !important;border:1px solid rgba(109,76,184,.20) !important;}
+.results-container{background:rgba(14,10,36,.60) !important;border:1px solid rgba(109,76,184,.20) !important;border-radius:8px;}
 .results-table{background:transparent !important;color:#ddd8f0 !important;}
 .results-table th{background:rgba(48,34,104,.32) !important;color:#e9e5f8 !important;border-bottom:1px solid rgba(109,76,184,.25) !important;}
 .results-table th:hover{background:rgba(56,40,120,.38) !important;}
@@ -566,6 +553,18 @@ input::placeholder,textarea::placeholder{color:#8a83ad !important;opacity:1 !imp
 
 /* hide leftover bright decorative ray/lines (clash with the dark theme) */
 .ray,.line,.topl,.bottoml,.leftl,.rightl{display:none !important;}
+
+
+/* ===== fix: bare .btn defaulted to an off-palette teal (--color:#00A97F) ===== */
+/* .btn-primary and .btn-secondary already retarget --color, so only bare .btn  */
+/* leaked teal. ::before used left:-5% in both base and hover, so its gradient  */
+/* never swept in and just sat behind every button. --color/--color2 are now    */
+/* on-palette at the .btn base rule above.                                      */
+.btn::before{display:none;}
+.btn:hover{color:#ece9f5;background-color:rgba(109,76,184,.18);}
+/* .btn-view (results table) had no rules of its own; give it a lighter weight  */
+/* than the primary buttons it currently inherits from.                         */
+.btn-view{--color:#cbb6f5;padding:4px 10px;}
 
 </style>
 </head>
