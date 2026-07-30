@@ -3,6 +3,15 @@
 <head>
     <meta charset="utf-8">
     <style>
+        /* This UI is dark-only by design and never follows the OS theme. Declaring
+           color-scheme makes Chrome render NATIVE controls dark to match: without
+           it, unchecked checkboxes render as stark white squares, number-input
+           spinners and select popups render light, and scrollbars stay light. */
+        :root {
+            color-scheme: dark;
+            accent-color: #6d28d9;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,6 +25,15 @@
             background: #0a0719;
             color: #fff;
             overflow-x: hidden;
+        }
+
+        /* body declares no font-size, so bare <label> elements fell back to the
+           browser's 16px default while the rest of the UI runs 11-14px. The API
+           Test field labels were the visible casualty. .config-option and
+           .config-controls label already declare 12px, so this only affects the
+           labels that had no size at all. */
+        label {
+            font-size: 12px;
         }
 
         .main-container {
@@ -223,9 +241,19 @@
             will-change: transform;
         }
 
+        /* :focus-visible, not :focus, so the ring appears for keyboard navigation
+           instead of lingering after a mouse click. On-palette, not white. */
         .action-button:focus {
-            outline: 2px solid white;
-            outline-offset: 4px;
+            outline: none;
+        }
+
+        .action-button:focus-visible,
+        .scan-button:focus-visible,
+        .toggle-button:focus-visible,
+        .nav-tab:focus-visible,
+        .btn:focus-visible {
+            outline: 2px solid #7c5cc4;
+            outline-offset: 3px;
         }
 
         .action-button span.text {
@@ -1075,12 +1103,40 @@
 
 
         .ray, .line { display: none !important; }
-        .results-container .category:nth-of-type(6n+1) .category-title { color: #9d84d8; }
-        .results-container .category:nth-of-type(6n+2) .category-title { color: #a5b4fc; }
-        .results-container .category:nth-of-type(6n+3) .category-title { color: #6ee7b7; }
-        .results-container .category:nth-of-type(6n+4) .category-title { color: #fcd34d; }
-        .results-container .category:nth-of-type(6n+5) .category-title { color: #fca5a5; }
-        .results-container .category:nth-of-type(6n+6) .category-title { color: #fde68a; }
+        /* Category title colour keyed to WHAT the category is, via data-category-key
+           (set in DisplayManager.createCategoryDiv). This replaces a
+           :nth-of-type(6n+k) rainbow that coloured titles by DOM position, so the
+           same category changed colour on every scan depending on which other
+           categories happened to return results -- and read as severity coding
+           that did not exist. Most titles are now neutral so the two tiers that
+           do carry meaning actually stand out. */
+        .results-container .category .category-title { color: #ece9f5; }
+
+        /* PII and sensitive context */
+        .results-container .category[data-category-key="emails"] .category-title,
+        .results-container .category[data-category-key="phoneNumbers"] .category-title,
+        .results-container .category[data-category-key="idCards"] .category-title,
+        .results-container .category[data-category-key="cookies"] .category-title,
+        .results-container .category[data-category-key="webhookUrls"] .category-title,
+        .results-container .category[data-category-key="sensitiveKeywords"] .category-title,
+        .results-container .category[data-category-key="cryptoUsage"] .category-title {
+            color: #fcd34d;
+        }
+
+        /* Credentials and API secrets: the findings that matter most */
+        .results-container .category[data-category-key="credentials"] .category-title,
+        .results-container .category[data-category-key="jwts"] .category-title,
+        .results-container .category[data-category-key="bearerTokens"] .category-title,
+        .results-container .category[data-category-key="basicAuth"] .category-title,
+        .results-container .category[data-category-key="authHeaders"] .category-title,
+        .results-container .category[data-category-key="awsKeys"] .category-title,
+        .results-container .category[data-category-key="googleApiKeys"] .category-title,
+        .results-container .category[data-category-key="githubTokens"] .category-title,
+        .results-container .category[data-category-key="gitlabTokens"] .category-title,
+        .results-container .category[data-category-key="wechatAppIds"] .category-title,
+        .results-container .category[data-category-key="idKeys"] .category-title {
+            color: #fca5a5;
+        }
 
 
         .btn {
