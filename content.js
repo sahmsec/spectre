@@ -385,12 +385,12 @@ class SRCMinerContent {
             });
 
 
-            if (window.PhantomInjector) {
-                const result = await window.PhantomInjector.executeScript(code);
+            if (window.SpectreInjector) {
+                const result = await window.SpectreInjector.executeScript(code);
 
                 return { success: true, result: result };
             } else {
-                throw new Error('PhantomInjector not loaded');
+                throw new Error('SpectreInjector not loaded');
             }
 
         } catch (error) {

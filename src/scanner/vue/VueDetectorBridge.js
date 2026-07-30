@@ -112,7 +112,7 @@
                 const result = await this.detector.delayedFullAnalysis();
 
 
-                this._lastResult = this.convertToPhantomFormat(result);
+                this._lastResult = this.convertToSpectreFormat(result);
 
                 return this._lastResult;
 
@@ -123,8 +123,8 @@
         }
 
 
-        convertToPhantomFormat(vueResult) {
-            const phantomResult = {
+        convertToSpectreFormat(vueResult) {
+            const spectreResult = {
                 type: 'vue',
                 detected: vueResult.vueDetected || false,
                 framework: {
@@ -156,7 +156,7 @@
 
 
             if (vueResult.allRoutes && Array.isArray(vueResult.allRoutes)) {
-                phantomResult.routes = vueResult.allRoutes.map(route => {
+                spectreResult.routes = vueResult.allRoutes.map(route => {
                     const routePath = route.path || route.fullPath || '';
 
 
@@ -187,14 +187,14 @@
                 });
 
 
-                phantomResult.sensitiveRoutes = this._identifySensitiveRoutes(phantomResult.routes);
+                spectreResult.sensitiveRoutes = this._identifySensitiveRoutes(spectreResult.routes);
             }
 
-            return phantomResult;
+            return spectreResult;
         }
 
 
-        convertRoutesToPhantomFormat(routes) {
+        convertRoutesToSpectreFormat(routes) {
             if (!Array.isArray(routes)) {
                 return [];
             }

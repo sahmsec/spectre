@@ -1,0 +1,22 @@
+Spectre
+Copyright 2026 Sakib Ahmed
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License in the LICENSE file distributed with this work, or at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+--------------------------------------------------------------------------------
+
+This product includes software derived from the Phantom project, which is
+licensed under the Apache License, Version 2.0.
+
+Spectre has been substantially modified from that work. Notable changes:
+
+  - The interface was redesigned and the source strings translated to English.
+  - The update mechanism was rewritten. The original fetched release metadata
+    from a third-party domain and rendered the response as HTML; it has been
+    replaced with a check against this project's own repository that builds its
+    UI through DOM APIs only.
+  - Scanning, extraction and export modules were extended and refactored.

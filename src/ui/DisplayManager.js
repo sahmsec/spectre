@@ -1659,13 +1659,13 @@ class DisplayManager {
 
     showNotification(message, type = 'success') {
 
-        const existingNotification = document.querySelector('.phantom-notification');
+        const existingNotification = document.querySelector('.spectre-notification');
         if (existingNotification) {
             existingNotification.remove();
         }
 
         const notification = document.createElement('div');
-        notification.className = 'phantom-notification';
+        notification.className = 'spectre-notification';
 
         const bgColor = type === 'error' ? '#ff4757' : '#7c5cc4';
 
@@ -1684,9 +1684,9 @@ class DisplayManager {
         `;
 
 
-        if (!document.querySelector('#phantom-notification-styles')) {
+        if (!document.querySelector('#spectre-notification-styles')) {
             const style = document.createElement('style');
-            style.id = 'phantom-notification-styles';
+            style.id = 'spectre-notification-styles';
             style.textContent = `
                 @keyframes slideInRight {
                     from {

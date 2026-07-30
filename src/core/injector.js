@@ -4,7 +4,7 @@
         window.addEventListener('message', async (event) => {
             if (event.source !== window) return;
 
-            if (event.data.type === 'PHANTOM_INJECT_SCRIPT') {
+            if (event.data.type === 'SPECTRE_INJECT_SCRIPT') {
                 const { scriptContent, scriptId } = event.data;
 
                 try {
@@ -14,13 +14,13 @@
 
                     const script = document.createElement('script');
                     script.src = url;
-                    script.setAttribute('data-phantom-script', scriptId);
+                    script.setAttribute('data-spectre-script', scriptId);
 
                     script.onload = () => {
                         URL.revokeObjectURL(url);
 
                         window.postMessage({
-                            type: 'PHANTOM_SCRIPT_INJECTED',
+                            type: 'SPECTRE_SCRIPT_INJECTED',
                             scriptId: scriptId,
                             success: true,
                             message: 'Script injected successfully'
@@ -31,7 +31,7 @@
                         URL.revokeObjectURL(url);
 
                         window.postMessage({
-                            type: 'PHANTOM_SCRIPT_INJECTED',
+                            type: 'SPECTRE_SCRIPT_INJECTED',
                             scriptId: scriptId,
                             success: false,
                             message: 'script load failed'
@@ -44,7 +44,7 @@
                 } catch (error) {
 
                     window.postMessage({
-                        type: 'PHANTOM_SCRIPT_INJECTED',
+                        type: 'SPECTRE_SCRIPT_INJECTED',
                         scriptId: scriptId,
                         success: false,
                         message: error.message
@@ -55,7 +55,7 @@
 
 
         window.postMessage({
-            type: 'PHANTOM_INJECTOR_READY'
+            type: 'SPECTRE_INJECTOR_READY'
         }, '*');
 
     } catch (error) {
