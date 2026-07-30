@@ -1045,7 +1045,13 @@
 
 
         .page-content {
-            padding: 0 15px;
+            /* overflow-x:hidden makes overflow-y compute to auto, so this element
+               clips. With zero vertical padding, an element sitting first in a page
+               had the top 2px of its :hover translateY(-2px) shaved off. Deep Scan
+               is the visible case: #deepScanBtn is its first child. The earlier
+               .scan-buttons-container padding-top fix only covered the Scan page.
+               4px leaves room for the lift on any page. */
+            padding: 4px 15px;
             position: relative;
             z-index: 10;
             transition: all 0.3s ease;
